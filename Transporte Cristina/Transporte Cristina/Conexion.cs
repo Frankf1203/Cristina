@@ -22,7 +22,7 @@ namespace Transporte_Cristina
 
         public static SqlConnection Obtenerconexion()
         {
-            SqlConnection conexion = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=CristinaBD;Integrated Security=True");
+            SqlConnection conexion = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=EncomiendaCristinaBD;Integrated Security=True");
             conexion.Open();
             return conexion;
 

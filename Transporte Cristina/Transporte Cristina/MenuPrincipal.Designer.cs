@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
-            this.btnFacturacionBoletos = new System.Windows.Forms.Button();
             this.btnEncomienda = new System.Windows.Forms.Button();
             this.btnAdminUsuarios = new System.Windows.Forms.Button();
             this.btnAgregarBus = new System.Windows.Forms.Button();
@@ -38,7 +37,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -48,7 +46,6 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -56,19 +53,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnFacturacionBoletos
-            // 
-            this.btnFacturacionBoletos.Location = new System.Drawing.Point(123, 149);
-            this.btnFacturacionBoletos.Name = "btnFacturacionBoletos";
-            this.btnFacturacionBoletos.Size = new System.Drawing.Size(150, 50);
-            this.btnFacturacionBoletos.TabIndex = 1;
-            this.btnFacturacionBoletos.Text = "Facturacion Boleteria";
-            this.btnFacturacionBoletos.UseVisualStyleBackColor = true;
-            this.btnFacturacionBoletos.Click += new System.EventHandler(this.btnFacturacionBoletos_Click);
-            // 
             // btnEncomienda
             // 
-            this.btnEncomienda.Location = new System.Drawing.Point(123, 205);
+            this.btnEncomienda.Location = new System.Drawing.Point(123, 159);
             this.btnEncomienda.Name = "btnEncomienda";
             this.btnEncomienda.Size = new System.Drawing.Size(150, 50);
             this.btnEncomienda.TabIndex = 2;
@@ -78,7 +65,7 @@
             // 
             // btnAdminUsuarios
             // 
-            this.btnAdminUsuarios.Location = new System.Drawing.Point(123, 261);
+            this.btnAdminUsuarios.Location = new System.Drawing.Point(123, 215);
             this.btnAdminUsuarios.Name = "btnAdminUsuarios";
             this.btnAdminUsuarios.Size = new System.Drawing.Size(150, 50);
             this.btnAdminUsuarios.TabIndex = 3;
@@ -88,7 +75,7 @@
             // 
             // btnAgregarBus
             // 
-            this.btnAgregarBus.Location = new System.Drawing.Point(123, 317);
+            this.btnAgregarBus.Location = new System.Drawing.Point(123, 271);
             this.btnAgregarBus.Name = "btnAgregarBus";
             this.btnAgregarBus.Size = new System.Drawing.Size(150, 50);
             this.btnAgregarBus.TabIndex = 4;
@@ -98,16 +85,17 @@
             // 
             // btnArqueoCaja
             // 
-            this.btnArqueoCaja.Location = new System.Drawing.Point(123, 373);
+            this.btnArqueoCaja.Location = new System.Drawing.Point(123, 327);
             this.btnArqueoCaja.Name = "btnArqueoCaja";
             this.btnArqueoCaja.Size = new System.Drawing.Size(150, 50);
             this.btnArqueoCaja.TabIndex = 5;
             this.btnArqueoCaja.Text = "Arqueo de Caja";
             this.btnArqueoCaja.UseVisualStyleBackColor = true;
+            this.btnArqueoCaja.Click += new System.EventHandler(this.btnArqueoCaja_Click);
             // 
             // btnControlRutas
             // 
-            this.btnControlRutas.Location = new System.Drawing.Point(123, 429);
+            this.btnControlRutas.Location = new System.Drawing.Point(123, 383);
             this.btnControlRutas.Name = "btnControlRutas";
             this.btnControlRutas.Size = new System.Drawing.Size(150, 50);
             this.btnControlRutas.TabIndex = 6;
@@ -116,7 +104,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(123, 485);
+            this.btnSalir.Location = new System.Drawing.Point(123, 439);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(150, 50);
             this.btnSalir.TabIndex = 7;
@@ -127,7 +115,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(12, 317);
+            this.pictureBox4.Location = new System.Drawing.Point(12, 271);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 50);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -137,27 +125,17 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 205);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 159);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(12, 149);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 13;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(12, 261);
+            this.pictureBox3.Location = new System.Drawing.Point(12, 215);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 50);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -167,7 +145,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(12, 373);
+            this.pictureBox5.Location = new System.Drawing.Point(12, 327);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(100, 50);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -177,7 +155,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(12, 429);
+            this.pictureBox6.Location = new System.Drawing.Point(12, 383);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(100, 50);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -187,7 +165,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(12, 485);
+            this.pictureBox7.Location = new System.Drawing.Point(12, 439);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(100, 50);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -226,7 +204,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(292, 551);
+            this.ClientSize = new System.Drawing.Size(292, 513);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox8);
@@ -234,7 +212,6 @@
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.btnSalir);
@@ -243,7 +220,6 @@
             this.Controls.Add(this.btnAgregarBus);
             this.Controls.Add(this.btnAdminUsuarios);
             this.Controls.Add(this.btnEncomienda);
-            this.Controls.Add(this.btnFacturacionBoletos);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -252,7 +228,6 @@
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -264,7 +239,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnFacturacionBoletos;
         private System.Windows.Forms.Button btnEncomienda;
         private System.Windows.Forms.Button btnAdminUsuarios;
         private System.Windows.Forms.Button btnAgregarBus;
@@ -273,7 +247,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;

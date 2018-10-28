@@ -58,19 +58,8 @@
     <Compile Include="Agregar Buses.Designer.cs">
       <DependentUpon>Agregar Buses.cs</DependentUpon>
     </Compile>
-    <Compile Include="clientes.cs" />
-    <Compile Include="Clientes_BD.cs" />
-    <Compile Include="compartir_datos.cs" />
     <Compile Include="Conexion.cs" />
-    <Compile Include="Cuidades.cs" />
     <Compile Include="Encriptacion.cs" />
-    <Compile Include="FacturacionBoleteria.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FacturacionBoleteria.Designer.cs">
-      <DependentUpon>FacturacionBoleteria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="horarios.cs" />
     <Compile Include="IngresarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,9 +123,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar Buses.resx">
       <DependentUpon>Agregar Buses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FacturacionBoleteria.resx">
-      <DependentUpon>FacturacionBoleteria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IngresarCliente.resx">
       <DependentUpon>IngresarCliente.cs</DependentUpon>

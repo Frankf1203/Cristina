@@ -14,18 +14,18 @@ namespace Transporte_Cristina
     public partial class IngresarCliente : Form
     {
         public string id;
-        int contreservado = 0;
-        int contvendido = 0;
+        /*int contreservado = 0;
+        int contvendido = 0;*/
 
-        Clientes_BD clieBD = new Clientes_BD();
+        //Clientes_BD clieBD = new Clientes_BD();
 
         public IngresarCliente()
         {
             InitializeComponent();
             cmbAccion.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            Clientes_BD clie = new Clientes_BD();
-            clie.autoCompletar(txtNumeroIdentificacion);
+           /* Clientes_BD clie = new Clientes_BD();
+            clie.autoCompletar(txtNumeroIdentificacion);*/
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -83,15 +83,15 @@ namespace Transporte_Cristina
 
             if (cmbAccion.Text == "Reservado")
             {
-                compartir_datos.color.BackColor = Color.SlateGray;
+                /*compartir_datos.color.BackColor = Color.SlateGray;
 
-                compartir_datos.reservado = contreservado++;
+                compartir_datos.reservado = contreservado++;*/
             }
             else
                 if (cmbAccion.Text == "Vendido")
             {
-                compartir_datos.color.BackColor = Color.Red;
-                compartir_datos.vendido = contvendido++;
+             /*   compartir_datos.color.BackColor = Color.Red;
+                compartir_datos.vendido = contvendido++; */
             }
 
 
@@ -132,9 +132,9 @@ namespace Transporte_Cristina
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            clientes clie = new clientes();
+            //clientes clie = new clientes();
 
-            if (clieBD.ClienteRegistrado(txtNumeroIdentificacion.Text) == 0)
+            /*if (clieBD.ClienteRegistrado(txtNumeroIdentificacion.Text) == 0)
             {
                 if (txtNumeroIdentificacion.Text == "" || txtNombreCompleto.Text == "" || txtTelefono.Text == "")
                 {
@@ -163,7 +163,7 @@ namespace Transporte_Cristina
             else
             {
                 MessageBox.Show("Imposible registrar, Cliente ya registrado ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            }*/
 
         }
 
@@ -179,10 +179,10 @@ namespace Transporte_Cristina
 
         private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            if (clieBD.ClienteRegistrado(txtNumeroIdentificacion.Text) > 0)
+           /* if (clieBD.ClienteRegistrado(txtNumeroIdentificacion.Text) > 0)
             {
                 clieBD.llenarTexBoxConsulta(txtNumeroIdentificacion.Text, txtNombreCompleto, txtTelefono);
-            }
+            }*/
         }
     }
 }

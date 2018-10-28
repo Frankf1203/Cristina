@@ -25,9 +25,9 @@ namespace Transporte_Cristina
 
         private void btnFacturacionBoletos_Click(object sender, EventArgs e)
         {
-            FacturacionBoleteria boletos = new FacturacionBoleteria();
+            /*FacturacionBoleteria boletos = new FacturacionBoleteria();*/
             this.Close();
-            boletos.Show();
+            //boletos.Show();
         }
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
@@ -72,6 +72,11 @@ namespace Transporte_Cristina
             Agregar_Buses agbus = new Agregar_Buses();
             this.Hide();
             agbus.Show();
+        }
+
+        private void btnArqueoCaja_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
