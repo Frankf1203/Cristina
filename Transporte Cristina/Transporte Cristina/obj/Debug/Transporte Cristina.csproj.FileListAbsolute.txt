@@ -121,3 +121,6 @@ C:\Users\fjfef\Documents\Visual Studio 2017\Projects\Transporte Cristina\Cristin
 C:\Users\fjfef\Documents\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.exe.config
 C:\Users\fjfef\Documents\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.exe
 C:\Users\fjfef\Documents\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.pdb
+C:\Users\Gabriel\Documents\Visual Studio 2012\Projects\Cristina\Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.exe.config
+C:\Users\Gabriel\Documents\Visual Studio 2012\Projects\Cristina\Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.exe
+C:\Users\Gabriel\Documents\Visual Studio 2012\Projects\Cristina\Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.pdb
