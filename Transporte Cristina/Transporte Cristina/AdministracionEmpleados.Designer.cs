@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministracionEmpleados));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupboxDatosPersonales = new System.Windows.Forms.GroupBox();
             this.comboboxPuestoAgregar = new System.Windows.Forms.ComboBox();
             this.labelPuesto = new System.Windows.Forms.Label();
             this.labelContraseñaTemporal = new System.Windows.Forms.Label();
@@ -81,14 +81,14 @@
             this.labelIdentidadModificar = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textboxUsuarioEliminar = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnRegresarEliminar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.labelUsuarioEliminar = new System.Windows.Forms.Label();
-            this.textboxUsuarioEliminar = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupboxDatosPersonales.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -109,7 +109,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.groupboxDatosPersonales);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
@@ -119,35 +119,35 @@
             this.tabPage1.Text = "Agregar";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // groupboxDatosPersonales
             // 
-            this.groupBox1.Controls.Add(this.comboboxPuestoAgregar);
-            this.groupBox1.Controls.Add(this.labelPuesto);
-            this.groupBox1.Controls.Add(this.labelContraseñaTemporal);
-            this.groupBox1.Controls.Add(this.textboxUsuarioAgregar);
-            this.groupBox1.Controls.Add(this.textboxCelularAgregar);
-            this.groupBox1.Controls.Add(this.textboxTelefonoAgregar);
-            this.groupBox1.Controls.Add(this.textboxEdadAgregar);
-            this.groupBox1.Controls.Add(this.textboxApellidoAgregar);
-            this.groupBox1.Controls.Add(this.textboxNombreAgregar);
-            this.groupBox1.Controls.Add(this.textboxIdentidadAgregar);
-            this.groupBox1.Controls.Add(this.labelContraseña);
-            this.groupBox1.Controls.Add(this.labelUsuario);
-            this.groupBox1.Controls.Add(this.labelCelular);
-            this.groupBox1.Controls.Add(this.labelTelefono);
-            this.groupBox1.Controls.Add(this.labelEdad);
-            this.groupBox1.Controls.Add(this.labelApellidos);
-            this.groupBox1.Controls.Add(this.labelNombre);
-            this.groupBox1.Controls.Add(this.labelIdentidad);
-            this.groupBox1.Controls.Add(this.btnRegresarAgregar);
-            this.groupBox1.Controls.Add(this.btnLimpiar);
-            this.groupBox1.Controls.Add(this.btnRegistrar);
-            this.groupBox1.Location = new System.Drawing.Point(8, 9);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(348, 631);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos Personales:";
+            this.groupboxDatosPersonales.Controls.Add(this.comboboxPuestoAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.labelPuesto);
+            this.groupboxDatosPersonales.Controls.Add(this.labelContraseñaTemporal);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxUsuarioAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxCelularAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxTelefonoAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxEdadAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxApellidoAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxNombreAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.textboxIdentidadAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.labelContraseña);
+            this.groupboxDatosPersonales.Controls.Add(this.labelUsuario);
+            this.groupboxDatosPersonales.Controls.Add(this.labelCelular);
+            this.groupboxDatosPersonales.Controls.Add(this.labelTelefono);
+            this.groupboxDatosPersonales.Controls.Add(this.labelEdad);
+            this.groupboxDatosPersonales.Controls.Add(this.labelApellidos);
+            this.groupboxDatosPersonales.Controls.Add(this.labelNombre);
+            this.groupboxDatosPersonales.Controls.Add(this.labelIdentidad);
+            this.groupboxDatosPersonales.Controls.Add(this.btnRegresarAgregar);
+            this.groupboxDatosPersonales.Controls.Add(this.btnLimpiar);
+            this.groupboxDatosPersonales.Controls.Add(this.btnRegistrar);
+            this.groupboxDatosPersonales.Location = new System.Drawing.Point(8, 9);
+            this.groupboxDatosPersonales.Name = "groupboxDatosPersonales";
+            this.groupboxDatosPersonales.Size = new System.Drawing.Size(348, 631);
+            this.groupboxDatosPersonales.TabIndex = 0;
+            this.groupboxDatosPersonales.TabStop = false;
+            this.groupboxDatosPersonales.Text = "Datos Personales:";
             // 
             // comboboxPuestoAgregar
             // 
@@ -183,6 +183,7 @@
             this.textboxUsuarioAgregar.Name = "textboxUsuarioAgregar";
             this.textboxUsuarioAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxUsuarioAgregar.TabIndex = 29;
+            this.textboxUsuarioAgregar.TextChanged += new System.EventHandler(this.textboxUsuarioAgregar_TextChanged);
             // 
             // textboxCelularAgregar
             // 
@@ -190,6 +191,8 @@
             this.textboxCelularAgregar.Name = "textboxCelularAgregar";
             this.textboxCelularAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxCelularAgregar.TabIndex = 28;
+            this.textboxCelularAgregar.TextChanged += new System.EventHandler(this.textboxCelularAgregar_TextChanged);
+            this.textboxCelularAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxCelularAgregar_KeyPress);
             // 
             // textboxTelefonoAgregar
             // 
@@ -197,6 +200,8 @@
             this.textboxTelefonoAgregar.Name = "textboxTelefonoAgregar";
             this.textboxTelefonoAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxTelefonoAgregar.TabIndex = 27;
+            this.textboxTelefonoAgregar.TextChanged += new System.EventHandler(this.textboxTelefonoAgregar_TextChanged);
+            this.textboxTelefonoAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxTelefonoAgregar_KeyPress);
             // 
             // textboxEdadAgregar
             // 
@@ -204,6 +209,8 @@
             this.textboxEdadAgregar.Name = "textboxEdadAgregar";
             this.textboxEdadAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxEdadAgregar.TabIndex = 26;
+            this.textboxEdadAgregar.TextChanged += new System.EventHandler(this.textboxEdadAgregar_TextChanged);
+            this.textboxEdadAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxEdadAgregar_KeyPress);
             // 
             // textboxApellidoAgregar
             // 
@@ -211,6 +218,7 @@
             this.textboxApellidoAgregar.Name = "textboxApellidoAgregar";
             this.textboxApellidoAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxApellidoAgregar.TabIndex = 25;
+            this.textboxApellidoAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxApellidoAgregar_KeyPress);
             // 
             // textboxNombreAgregar
             // 
@@ -218,6 +226,7 @@
             this.textboxNombreAgregar.Name = "textboxNombreAgregar";
             this.textboxNombreAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxNombreAgregar.TabIndex = 24;
+            this.textboxNombreAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxNombreAgregar_KeyPress);
             // 
             // textboxIdentidadAgregar
             // 
@@ -225,6 +234,8 @@
             this.textboxIdentidadAgregar.Name = "textboxIdentidadAgregar";
             this.textboxIdentidadAgregar.Size = new System.Drawing.Size(195, 26);
             this.textboxIdentidadAgregar.TabIndex = 23;
+            this.textboxIdentidadAgregar.TextChanged += new System.EventHandler(this.textboxIdentidadAgregar_TextChanged);
+            this.textboxIdentidadAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxIdentidadAgregar_KeyPress);
             // 
             // labelContraseña
             // 
@@ -348,6 +359,7 @@
             this.textboxUsuarioBusqueda.Name = "textboxUsuarioBusqueda";
             this.textboxUsuarioBusqueda.Size = new System.Drawing.Size(187, 26);
             this.textboxUsuarioBusqueda.TabIndex = 44;
+            this.textboxUsuarioBusqueda.TextChanged += new System.EventHandler(this.textboxUsuarioBusqueda_TextChanged_1);
             // 
             // labelUsuarioBusqueda
             // 
@@ -481,6 +493,8 @@
             this.textboxCelularModificar.Name = "textboxCelularModificar";
             this.textboxCelularModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxCelularModificar.TabIndex = 46;
+            this.textboxCelularModificar.TextChanged += new System.EventHandler(this.textboxCelularModificar_TextChanged);
+            this.textboxCelularModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxCelularModificar_KeyPress);
             // 
             // textboxTelefonoModificar
             // 
@@ -488,6 +502,8 @@
             this.textboxTelefonoModificar.Name = "textboxTelefonoModificar";
             this.textboxTelefonoModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxTelefonoModificar.TabIndex = 45;
+            this.textboxTelefonoModificar.TextChanged += new System.EventHandler(this.textboxTelefonoModificar_TextChanged);
+            this.textboxTelefonoModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxTelefonoModificar_KeyPress);
             // 
             // textboxEdadModificar
             // 
@@ -495,6 +511,7 @@
             this.textboxEdadModificar.Name = "textboxEdadModificar";
             this.textboxEdadModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxEdadModificar.TabIndex = 44;
+            this.textboxEdadModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxEdadModificar_KeyPress);
             // 
             // textboxApellidoModificar
             // 
@@ -502,6 +519,8 @@
             this.textboxApellidoModificar.Name = "textboxApellidoModificar";
             this.textboxApellidoModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxApellidoModificar.TabIndex = 43;
+            this.textboxApellidoModificar.TextChanged += new System.EventHandler(this.textboxApellidoModificar_TextChanged);
+            this.textboxApellidoModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxApellidoModificar_KeyPress);
             // 
             // textboxNombreModificar
             // 
@@ -509,6 +528,7 @@
             this.textboxNombreModificar.Name = "textboxNombreModificar";
             this.textboxNombreModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxNombreModificar.TabIndex = 42;
+            this.textboxNombreModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxNombreModificar_KeyPress);
             // 
             // textboxIdentidadModificar
             // 
@@ -516,6 +536,8 @@
             this.textboxIdentidadModificar.Name = "textboxIdentidadModificar";
             this.textboxIdentidadModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxIdentidadModificar.TabIndex = 41;
+            this.textboxIdentidadModificar.TextChanged += new System.EventHandler(this.textboxIdentidadModificar_TextChanged);
+            this.textboxIdentidadModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxIdentidadModificar_KeyPress);
             // 
             // labelUsuarioModificar
             // 
@@ -606,6 +628,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Eliminación:";
             // 
+            // textboxUsuarioEliminar
+            // 
+            this.textboxUsuarioEliminar.Location = new System.Drawing.Point(107, 296);
+            this.textboxUsuarioEliminar.Name = "textboxUsuarioEliminar";
+            this.textboxUsuarioEliminar.Size = new System.Drawing.Size(169, 26);
+            this.textboxUsuarioEliminar.TabIndex = 20;
+            this.textboxUsuarioEliminar.TextChanged += new System.EventHandler(this.textboxUsuarioEliminar_TextChanged);
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -644,13 +674,6 @@
             this.labelUsuarioEliminar.TabIndex = 8;
             this.labelUsuarioEliminar.Text = "Usuario:";
             // 
-            // textboxUsuarioEliminar
-            // 
-            this.textboxUsuarioEliminar.Location = new System.Drawing.Point(107, 296);
-            this.textboxUsuarioEliminar.Name = "textboxUsuarioEliminar";
-            this.textboxUsuarioEliminar.Size = new System.Drawing.Size(169, 26);
-            this.textboxUsuarioEliminar.TabIndex = 20;
-            // 
             // AdministracionEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -666,8 +689,8 @@
             this.Load += new System.EventHandler(this.AdministracionUsuarios_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupboxDatosPersonales.ResumeLayout(false);
+            this.groupboxDatosPersonales.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -684,7 +707,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupboxDatosPersonales;
         private System.Windows.Forms.Button btnRegresarAgregar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnRegistrar;

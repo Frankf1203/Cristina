@@ -35,7 +35,7 @@ namespace Transporte_Cristina
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
-                Usuario = sdr.GetString(3);
+                Usuario = sdr.GetString(7);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
@@ -94,14 +94,14 @@ namespace Transporte_Cristina
         {
             string Usuario = txtUsuario.Text;
             string Respuesta = "";
-            string Id_Empleado = "";
+            string Codigo_Usuario = "";
 
-            SqlCommand sql = new SqlCommand("Select Id_Empleado from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
-            sql.Parameters.AddWithValue("@Usuario", Id_Empleado);
+            SqlCommand sql = new SqlCommand("Select Codigo_Usuario from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
+            sql.Parameters.AddWithValue("@Usuario", Codigo_Usuario);
             SqlDataReader reader = sql.ExecuteReader();
             if (reader.Read())
             {
-                Id_Empleado = reader["Id_Empleado"].ToString();
+                Codigo_Usuario = reader["Codigo_Usuario"].ToString();
             }
             Conexion.Obtenerconexion().Close();
             if (Usuario.Equals(txtUsuario.Text))
@@ -109,8 +109,8 @@ namespace Transporte_Cristina
 
                 if (cmbPregunta.Text == "¿Cual es tu color favorito?")
                 {
-                    SqlCommand select = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Cod_Pregunta='" + 1 + "' ", Conexion.Obtenerconexion());
-                    select.Parameters.AddWithValue("@Id_Empleado", Respuesta);
+                    SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 1 + "' ", Conexion.Obtenerconexion());
+                    select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                     SqlDataReader sdr = select.ExecuteReader();
                     if (sdr.Read())
                     {
@@ -133,8 +133,8 @@ namespace Transporte_Cristina
             }
             if (cmbPregunta.Text == "¿Cual es el nombre del primer libro que leiste?")
             {
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Cod_Pregunta='" + 2 + "' ", Conexion.Obtenerconexion());
-                select.Parameters.AddWithValue("@Id_Empleado", Respuesta);
+                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 2 + "' ", Conexion.Obtenerconexion());
+                select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
                 {
@@ -158,8 +158,8 @@ namespace Transporte_Cristina
             if (cmbPregunta.Text == "¿En que año terminaste la secundaria?")
             {
 
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Cod_Pregunta='" + 3 + "' ", Conexion.Obtenerconexion());
-                select.Parameters.AddWithValue("@Id_Empleado", Respuesta);
+                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 3 + "' ", Conexion.Obtenerconexion());
+                select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
                 {
@@ -183,8 +183,8 @@ namespace Transporte_Cristina
             if (cmbPregunta.Text == "¿Cual es el nombre de tu mascota?")
             {
 
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Cod_Pregunta='" + 4 + "' ", Conexion.Obtenerconexion());
-                select.Parameters.AddWithValue("@Id_Empleado", Respuesta);
+                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 4 + "' ", Conexion.Obtenerconexion());
+                select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
                 {
@@ -207,8 +207,8 @@ namespace Transporte_Cristina
 
             if (cmbPregunta.Text == "¿Cual es tu pelicula favorita?")
             {
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Cod_Pregunta='" + 5 + "' ", Conexion.Obtenerconexion());
-                select.Parameters.AddWithValue("@Id_Empleado", Respuesta);
+                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 5 + "' ", Conexion.Obtenerconexion());
+                select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
                 {
@@ -230,8 +230,8 @@ namespace Transporte_Cristina
 
             if (cmbPregunta.Text == "¿Cual es tu restaurante preferido?")
             {
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Cod_Pregunta='" + 6 + "' ", Conexion.Obtenerconexion());
-                select.Parameters.AddWithValue("@Id_Empleado", Respuesta);
+                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 6 + "' ", Conexion.Obtenerconexion());
+                select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
                 {

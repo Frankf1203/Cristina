@@ -16,7 +16,7 @@ namespace Transporte_Cristina
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdministracionEmpleados());
+            Application.Run(new InicioSesion());
         }
     }
 }

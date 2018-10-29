@@ -25,7 +25,7 @@ namespace Transporte_Cristina
             string Contraseña = Encriptacion.Encrypt(txtContraseña.Text);
             if (txtContraseña.Text.Equals(txtConfirmarContraseña.Text))
             {
-                SqlCommand update = new SqlCommand(@"Update Empleados Set Contraseña='" + Contraseña + "', Cod_Estado='" + 1 + "', Intentos='" + 0 + "' Where Usuario='" + Usuario + "'", Conexion.Obtenerconexion());
+                SqlCommand update = new SqlCommand(@"Update Empleados Set Contraseña='" + Contraseña + "', Codigo_Estado='" + 1 + "', Intentos='" + 0 + "' Where Usuario='" + Usuario + "'", Conexion.Obtenerconexion());
                 update.ExecuteNonQuery();
                 MessageBox.Show("Contraseña cambiada exitosamente.", "Cambio Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 InicioSesion inicio = new InicioSesion();

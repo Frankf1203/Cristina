@@ -34,16 +34,16 @@ namespace Transporte_Cristina
         {
             btnArqueoCaja.Enabled = false;
             btnControlRutas.Enabled = false;
-            string Cod_Puesto="";
+            string Codigo_Puesto="";
             string Usuario = lblUsuario.Text;
-            SqlCommand sql = new SqlCommand("select Cod_Puesto from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
-            sql.Parameters.AddWithValue("@Usuario", Cod_Puesto);
+            SqlCommand sql = new SqlCommand("select Codigo_Puesto from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
+            sql.Parameters.AddWithValue("@Usuario", Codigo_Puesto);
             SqlDataReader reader = sql.ExecuteReader();
             if (reader.Read())
             {
-                Cod_Puesto = reader["Cod_Puesto"].ToString();
+                Codigo_Puesto = reader["Codigo_Puesto"].ToString();
             }
-            if(Cod_Puesto=="2")
+            if(Codigo_Puesto=="2")
             {
                 btnAdminUsuarios.Enabled = false;
                 btnAgregarBus.Enabled = false;

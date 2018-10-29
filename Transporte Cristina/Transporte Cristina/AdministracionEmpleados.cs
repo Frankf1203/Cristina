@@ -63,21 +63,18 @@ namespace Transporte_Cristina
             SqlDataReader reader = sql.ExecuteReader();
             if (reader.Read())
             {
-                Identidad_Empleado = reader.GetString(0);
-                Usuario = reader.GetString(3);
+                Identidad_Empleado = reader.GetString(1);
+                Usuario = reader.GetString(7);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
             if (IsExist == true)
             {
-                if (Identidad_Empleado.Equals(textboxIdentidadAgregar.Text))
+                if (Identidad_Empleado.Equals(textboxIdentidadAgregar.Text) || Usuario.Equals(textboxUsuarioAgregar.Text))
                 {
-                    MessageBox.Show("Identidad de Empleado ya existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Identidad de Empleado o Usuario ya existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                if (Usuario.Equals(textboxUsuarioAgregar.Text))
-                {
-                    MessageBox.Show("Usuario ya existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
 
             }
             else
@@ -245,7 +242,7 @@ namespace Transporte_Cristina
 
         private void textboxNombreModificar_TextChanged(object sender, EventArgs e)
         {
-            textboxNombreModificar.MaxLength = 50;
+            textboxNombreModificar.MaxLength = 25;
         }
 
         private void textboxEdadModificar_TextChanged(object sender, EventArgs e)
@@ -253,20 +250,10 @@ namespace Transporte_Cristina
             textboxEdadModificar.MaxLength = 2;
         }
 
-        private void txtUsuarioEliminar_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-       
+               
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Eliminar();
-        }
-
-        private void textboxUsuarioBusqueda_TextChanged(object sender, EventArgs e)
-        {
-            textboxUsuarioBusqueda.MaxLength = 13;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -445,24 +432,124 @@ namespace Transporte_Cristina
             }
         }
 
-        private void txtIdentidad_MouseDown(object sender, MouseEventArgs e)
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            Clipboard.Clear();
+            Buscar();
         }
 
-        private void txtIDEliminar_KeyPress(object sender, KeyPressEventArgs e)
+        private void textboxIdentidadAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxIdentidadAgregar.MaxLength = 13;
+        }
+
+        private void textboxUsuarioEliminar_TextChanged(object sender, EventArgs e)
+        {
+            textboxUsuarioEliminar.MaxLength = 25;
+        }
+
+        private void textboxNombreAgregar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Sololetras(e);
+        }
+
+        private void textboxIdentidadAgregar_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.Solonumeros(e);
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void textboxApellidoAgregar_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            Validar.Sololetras(e);
         }
 
-        private void btnBuscar_Click_1(object sender, EventArgs e)
+        private void textboxEdadAgregar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Buscar();
+            Validar.Solonumeros(e);
+        }
+
+        private void textboxEdadAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxEdadAgregar.MaxLength = 2;
+        }
+
+        private void textboxTelefonoAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxTelefonoAgregar.MaxLength = 8;
+        }
+
+        private void textboxTelefonoAgregar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Solonumeros(e);
+        }
+
+        private void textboxCelularAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxCelularAgregar.MaxLength = 8;
+        }
+
+        private void textboxCelularAgregar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Solonumeros(e);
+        }
+
+        private void textboxUsuarioAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxUsuarioAgregar.MaxLength = 25;
+        }
+
+        private void textboxUsuarioBusqueda_TextChanged_1(object sender, EventArgs e)
+        {
+            textboxUsuarioBusqueda.MaxLength = 25;
+        }
+
+        private void textboxIdentidadModificar_TextChanged(object sender, EventArgs e)
+        {
+            textboxIdentidadAgregar.MaxLength = 13;
+        }
+
+        private void textboxIdentidadModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Solonumeros(e);
+        }
+
+        private void textboxNombreModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Sololetras(e);
+        }
+
+        private void textboxApellidoModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Sololetras(e);
+        }
+
+        private void textboxApellidoModificar_TextChanged(object sender, EventArgs e)
+        {
+            textboxApellidoModificar.MaxLength = 25;
+        }
+
+        private void textboxEdadModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Solonumeros(e);
+        }
+
+        private void textboxTelefonoModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Solonumeros(e);
+        }
+
+        private void textboxTelefonoModificar_TextChanged(object sender, EventArgs e)
+        {
+            textboxTelefonoModificar.MaxLength = 8;
+        }
+
+        private void textboxCelularModificar_TextChanged(object sender, EventArgs e)
+        {
+            textboxCelularModificar.MaxLength = 8;
+        }
+
+        private void textboxCelularModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.Solonumeros(e);
         }
     }
 }

@@ -59,98 +59,98 @@ namespace Transporte_Cristina
         private void Respuesta()
         {
             string Usuario = lblUsuario.Text;
-            string Id_Empleado = "";
+            string Codigo_Usuario = "";
             int Cod_Pregunta;
             string Respuesta1 = txtRespuesta1.Text;
             string Respuesta2 = txtRespuesta2.Text;
-            SqlCommand cmd = new SqlCommand("select Id_Empleado from Empleados where Usuario ='" + lblUsuario.Text + "'", Conexion.Obtenerconexion());
+            SqlCommand cmd = new SqlCommand("select Codigo_Usuario from Empleados where Usuario ='" + lblUsuario.Text + "'", Conexion.Obtenerconexion());
             cmd.Parameters.AddWithValue("@Usuario", Convert.ToString(lblUsuario.Text));
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
-                Id_Empleado = sdr["Id_Empleado"].ToString();
+                Codigo_Usuario = sdr["Codigo_Usuario"].ToString();
             }
             if (cmbPregunta1.Text == "¿Cual es tu color favorito?")
             {
                 Cod_Pregunta = 1;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             else if (cmbPregunta2.Text == "¿Cual es tu color favorito?")
             {
                 Cod_Pregunta = 1;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             if (cmbPregunta1.Text == "¿Cual es el nombre del primer libro que leiste?")
             {
                 Cod_Pregunta = 2;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             else if (cmbPregunta2.Text == "¿Cual es el nombre del primer libro que leiste?")
             {
                 Cod_Pregunta = 2;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             if (cmbPregunta1.Text == "¿En que año terminaste la secundaria?")
             {
                 Cod_Pregunta = 3;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             else if (cmbPregunta2.Text == "¿En que año terminaste la secundaria?")
             {
                 Cod_Pregunta = 3;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             if (cmbPregunta1.Text == "¿Cual es el nombre de tu mascota?")
             {
                 Cod_Pregunta = 4;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             else if (cmbPregunta2.Text == "¿Cual es el nombre de tu mascota?")
             {
                 Cod_Pregunta = 4;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             if (cmbPregunta1.Text == "¿Cual es tu pelicula favorita?")
             {
                 Cod_Pregunta = 5;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             else if (cmbPregunta2.Text == "¿Cual es tu pelicula favorita?")
             {
                 Cod_Pregunta = 5;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             if (cmbPregunta1.Text == "¿Cual es tu restaurante preferido?")
             {
                 Cod_Pregunta = 6;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta1 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }
             else if (cmbPregunta2.Text == "¿Cual es tu restaurante preferido?")
             {
                 Cod_Pregunta = 6;
-                SqlCommand insert = new SqlCommand("Insert into Respuestas(Id_Empleado, Cod_Pregunta, Respuesta)Values('" + Id_Empleado + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
+                SqlCommand insert = new SqlCommand("Insert into Respuestas(Codigo_Usuario, Cod_Pregunta, Respuesta)Values('" + Codigo_Usuario + "', '" + Cod_Pregunta + "','" + Respuesta2 + "')", Conexion.Obtenerconexion());
                 insert.ExecuteNonQuery();
 
             }

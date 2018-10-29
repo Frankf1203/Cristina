@@ -36,11 +36,11 @@ namespace Transporte_Cristina
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            string Id_Empleado = "";
+            string Codigo_Usuario = "";
             string ID = "";
             string Usuario = txtUsuario.Text;
             string Password = "";
-            string Cod_Estado = "";
+            string Codigo_Estado = "";
             bool IsExist = false;
             int cont = 0;
 
@@ -48,8 +48,8 @@ namespace Transporte_Cristina
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
-                Usuario = sdr.GetString(3);
-                Password = sdr.GetString(4);
+                Usuario = sdr.GetString(7);
+                Password = sdr.GetString(8);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
@@ -57,35 +57,35 @@ namespace Transporte_Cristina
             {
                 if (Usuario.Equals(txtUsuario.Text))
                 {
-                    SqlCommand sql = new SqlCommand("select Cod_Estado from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
-                    sql.Parameters.AddWithValue("@Usuario", Cod_Estado);
+                    SqlCommand sql = new SqlCommand("select Codigo_Estado from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
+                    sql.Parameters.AddWithValue("@Usuario", Codigo_Estado);
                     SqlDataReader reader = sql.ExecuteReader();
                     if (reader.Read())
                     {
-                        Cod_Estado = reader["Cod_Estado"].ToString();
+                        Codigo_Estado = reader["Codigo_Estado"].ToString();
                         
                     }
                     Conexion.Obtenerconexion().Close();
                     
                     if (Encriptacion.Decrypt(Password).Equals(txtContraseña.Text))
                     {
-                        if (Cod_Estado == "6")
+                        if (Codigo_Estado == "6")
                         {
                             bool IfExist = false;
-                            SqlCommand cd = new SqlCommand("Select Id_Empleado From Empleados Where Cod_Estado = '" + 6 + "'", Conexion.Obtenerconexion());
-                            cd.Parameters.AddWithValue("@Cod_Estado", Id_Empleado);
+                            SqlCommand cd = new SqlCommand("Select Codigo_Usuario From Empleados Where Codigo_Estado = '" + 6 + "'", Conexion.Obtenerconexion());
+                            cd.Parameters.AddWithValue("@Codigo_Estado", Codigo_Usuario);
                             SqlDataReader sq = cd.ExecuteReader();
                             if(sq.Read())
                             {
-                                Id_Empleado = sq["Id_Empleado"].ToString();
+                                Codigo_Usuario = sq["Codigo_Usuario"].ToString();
                             }
-                            ID = Id_Empleado;
+                            ID = Codigo_Usuario;
                             
-                            SqlCommand command = new SqlCommand("Select * From Respuestas Where Id_Empleado = '" + ID + "'", Conexion.Obtenerconexion());
+                            SqlCommand command = new SqlCommand("Select * From Respuestas Where Codigo_Usuario = '" + ID + "'", Conexion.Obtenerconexion());
                             SqlDataReader dataReader = command.ExecuteReader();
                             if(dataReader.Read())
                             {
-                                Id_Empleado = dataReader.GetString(0);
+                                Codigo_Usuario = dataReader.GetString(0);
                                 IfExist = true;
                             }
                             if(IfExist)
@@ -106,18 +106,18 @@ namespace Transporte_Cristina
 
                             }
                         }
-                        else if (Cod_Estado == "5")
+                        else if (Codigo_Estado == "5")
                         {
                             MessageBox.Show("Su Usuario se encuentra bloqueado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             RecuperacionContraseña recuperacion = new RecuperacionContraseña();
                             this.Hide();
                             recuperacion.Show();
                         }
-                        else if (Cod_Estado == "2")
+                        else if (Codigo_Estado == "2")
                         {
                             MessageBox.Show("Su Usuario esta inactivo. Contacte al Administrador.");
                         }
-                        else if (Cod_Estado == "1")
+                        else if (Codigo_Estado == "1")
                         {
                             MenuPrincipal menu = new MenuPrincipal();
                             menu.lblUsuario.Text = Usuario;
@@ -134,7 +134,7 @@ namespace Transporte_Cristina
                         SqlDataReader rd = command.ExecuteReader();
                         if (rd.Read())
                         {
-                            Intentos = rd.GetInt32(5);
+                            Intentos = rd.GetInt32(11);
                             IsExist = true;
                         }
 
@@ -144,7 +144,7 @@ namespace Transporte_Cristina
 
                         if (Intentos > 2)
                         {
-                            SqlCommand update = new SqlCommand(@"Update Empleados Set  Intentos='" + Intentos + "', Cod_Estado='" + 5 + "' Where Usuario='" + Usuario + "'", Conexion.Obtenerconexion());
+                            SqlCommand update = new SqlCommand(@"Update Empleados Set  Intentos='" + Intentos + "', Codigo_Estado='" + 5 + "' Where Usuario='" + Usuario + "'", Conexion.Obtenerconexion());
                             update.ExecuteNonQuery();
                         }
                         else
