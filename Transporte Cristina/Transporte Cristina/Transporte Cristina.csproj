@@ -96,7 +96,6 @@
     <Compile Include="NuevaContraseña.Designer.cs">
       <DependentUpon>NuevaContraseña.cs</DependentUpon>
     </Compile>
-    <Compile Include="Numero de Bus.cs" />
     <Compile Include="PreguntasdeSeguridad.cs">
       <SubType>Form</SubType>
     </Compile>

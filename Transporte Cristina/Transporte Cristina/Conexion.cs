@@ -16,7 +16,7 @@ namespace Transporte_Cristina
         protected SqlConnection connection;
         public Conexion()
         {
-            this.conect = (@"Data Source=.\SQLEXPRESS;Initial Catalog=CristinaBD;Integrated Security=True");
+            this.conect = (@"Data Source=.\SQLEXPRESS;Initial Catalog=EncomiendaCristinaBD;Integrated Security=True");
             this.connection = new SqlConnection(this.conect);
         }
 
