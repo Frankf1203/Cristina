@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Transporte_Cristina
 {
@@ -17,17 +12,17 @@ namespace Transporte_Cristina
         {
             InitializeComponent();
             comboboxPuestoAgregar.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboboxEstadoModificar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             comboboxPuestoModificar.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-                          
+
         private void btnRegresar_Click(object sender, EventArgs e)
         {
             MenuPrincipal menu = new MenuPrincipal();
-            this.Close();
+            this.Hide();
             menu.Show();
         }
-        
+
         private string GenerarClave(int longitud)
         {
             string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -38,9 +33,9 @@ namespace Transporte_Cristina
                 res.Append(caracteres[rnd.Next(caracteres.Length)]);
             }
             return res.ToString();
-            
+
         }
-        
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             Registrar();
@@ -51,7 +46,6 @@ namespace Transporte_Cristina
             string Identidad_Empleado = textboxIdentidadAgregar.Text;
             string Nombre_Empleado = textboxNombreAgregar.Text;
             string Apellido_Empleado = textboxApellidoAgregar.Text;
-            string Edad= textboxEdadAgregar.Text;
             string Usuario = textboxUsuarioAgregar.Text;
             string Telefono = textboxTelefonoAgregar.Text;
             string Celular = textboxCelularAgregar.Text;
@@ -74,105 +68,108 @@ namespace Transporte_Cristina
                 {
                     MessageBox.Show("Identidad de Empleado o Usuario ya existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
-
             }
             else
             {
-                if (comboboxPuestoAgregar.Text == "Gerente")
+                if (comboboxPuestoAgregar.Text == "")
                 {
-                    int Cod_Puesto = 1;
-                    int Cod_Estado = 6;
-                    if(textboxTelefonoAgregar.Text == "" && textboxCelularAgregar.Text=="")
+                    MessageBox.Show("Debe de seleccionar un puesto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    comboboxPuestoAgregar.Focus();
+                }
+                else
+                {
+                    if (comboboxPuestoAgregar.Text == "Gerente")
                     {
-                        MessageBox.Show("Debe de ingresar al menos su Telefono o Celular.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        if (textboxTelefonoAgregar.Text == "")
+                        int Codigo_Puesto = 1;
+                        int Cod_Estado = 6;
+                        if (textboxTelefonoAgregar.Text == "" && textboxCelularAgregar.Text == "")
                         {
-                            SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Edad, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Edad + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Cod_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
-                            insert.ExecuteNonQuery();
-                            MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
-                            InicioSesion inicio = new InicioSesion();
-                            seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
-                            this.Hide();
-                            inicio.Show();
-                        }
-                        else if (textboxCelularAgregar.Text == "")
-                        {
-                            SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Edad, Telefono, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Edad + "', '" + Telefono + "','" + Usuario + "', '" + Contraseña + "', '" + Cod_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
-                            insert.ExecuteNonQuery();
-                            MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
-                            InicioSesion inicio = new InicioSesion();
-                            seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
-                            this.Hide();
-                            inicio.Show();
+                            MessageBox.Show("Debe de ingresar al menos su Telefono o Celular.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
-                            SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Edad, Telefono, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Edad + "', '" + Telefono + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Cod_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
-                            insert.ExecuteNonQuery();
-                            MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
-                            InicioSesion inicio = new InicioSesion();
-                            seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
-                            this.Hide();
-                            inicio.Show();
+                            if (textboxTelefonoAgregar.Text == "")
+                            {
+                                SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Codigo_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
+                                insert.ExecuteNonQuery();
+                                MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
+                                InicioSesion inicio = new InicioSesion();
+                                seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
+                                this.Hide();
+                                inicio.Show();
+                            }
+                            else if (textboxCelularAgregar.Text == "")
+                            {
+                                SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, , Telefono, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Telefono + "','" + Usuario + "', '" + Contraseña + "', '" + Codigo_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
+                                insert.ExecuteNonQuery();
+                                MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
+                                InicioSesion inicio = new InicioSesion();
+                                seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
+                                this.Hide();
+                                inicio.Show();
+                            }
+                            else
+                            {
+                                SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, , Telefono, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Telefono + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Codigo_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
+                                insert.ExecuteNonQuery();
+                                MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
+                                InicioSesion inicio = new InicioSesion();
+                                seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
+                                this.Hide();
+                                inicio.Show();
+                            }
                         }
                     }
-                    
-
-                }
-                if (comboboxPuestoAgregar.Text == "Cajero")
-                {
-                    int Cod_Puesto = 2;
-                    int Cod_Estado = 6;
-                    if (textboxTelefonoAgregar.Text == "" && textboxCelularAgregar.Text == "")
+                    if (comboboxPuestoAgregar.Text == "Cajero")
                     {
-                        MessageBox.Show("Debe de ingresar al menos su Telefono o Celular.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        if (textboxTelefonoAgregar.Text == "")
+                        int Codigo_Puesto = 2;
+                        int Cod_Estado = 6;
+                        if (textboxTelefonoAgregar.Text == "" && textboxCelularAgregar.Text == "")
                         {
-                            SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Edad, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Edad + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Cod_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
-                            insert.ExecuteNonQuery();
-                            MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
-                            InicioSesion inicio = new InicioSesion();
-                            seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
-                            this.Hide();
-                            inicio.Show();
-                        }
-                        else if (textboxCelularAgregar.Text == "")
-                        {
-                            SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Edad, Telefono, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Edad + "', '" + Telefono + "','" + Usuario + "', '" + Contraseña + "', '" + Cod_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
-                            insert.ExecuteNonQuery();
-                            MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
-                            InicioSesion inicio = new InicioSesion();
-                            seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
-                            this.Hide();
-                            inicio.Show();
+                            MessageBox.Show("Debe de ingresar al menos su Telefono o Celular.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
-                            SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Edad, Telefono, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Edad + "', '" + Telefono + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Cod_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
-                            insert.ExecuteNonQuery();
-                            MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
-                            InicioSesion inicio = new InicioSesion();
-                            seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
-                            this.Hide();
-                            inicio.Show();
+                            if (textboxTelefonoAgregar.Text == "")
+                            {
+                                SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Codigo_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
+                                insert.ExecuteNonQuery();
+                                MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
+                                InicioSesion inicio = new InicioSesion();
+                                seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
+                                this.Hide();
+                                inicio.Show();
+                            }
+                            else if (textboxCelularAgregar.Text == "")
+                            {
+                                SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Telefono, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Telefono + "','" + Usuario + "', '" + Contraseña + "', '" + Codigo_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
+                                insert.ExecuteNonQuery();
+                                MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
+                                InicioSesion inicio = new InicioSesion();
+                                seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
+                                this.Hide();
+                                inicio.Show();
+                            }
+                            else
+                            {
+                                SqlCommand insert = new SqlCommand("Insert into Empleados(Identidad_Empleado, Nombre_Empleado, Apellido_Empleado, Telefono, Celular, Usuario, Contraseña, Codigo_Puesto, Codigo_Estado, Intentos)Values('" + Identidad_Empleado + "', '" + Nombre_Empleado + "', '" + Apellido_Empleado + "', '" + Telefono + "', '" + Celular + "','" + Usuario + "', '" + Contraseña + "', '" + Codigo_Puesto + "', '" + Cod_Estado + "', '" + Intentos + "')", Conexion.Obtenerconexion());
+                                insert.ExecuteNonQuery();
+                                MessageBox.Show("Usuario Creado con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                PreguntasdeSeguridad seguridad = new PreguntasdeSeguridad();
+                                InicioSesion inicio = new InicioSesion();
+                                seguridad.lblUsuario.Text = textboxUsuarioAgregar.Text;
+                                this.Hide();
+                                inicio.Show();
+                            }
                         }
-
-
                     }
                 }
+
             }
 
 
@@ -183,7 +180,6 @@ namespace Transporte_Cristina
             textboxIdentidadAgregar.Clear();
             textboxNombreAgregar.Clear();
             textboxApellidoAgregar.Clear();
-            textboxEdadAgregar.Clear();
             textboxTelefonoAgregar.Clear();
             textboxCelularAgregar.Clear();
             textboxUsuarioAgregar.Clear();
@@ -194,25 +190,20 @@ namespace Transporte_Cristina
         private void AdministracionUsuarios_Load(object sender, EventArgs e)
         {
             textboxIdentidadModificar.Enabled = false;
-            textboxEdadModificar.Enabled = false;
-            comboboxEstadoModificar.Enabled = false;
             comboboxPuestoModificar.Enabled = false;
             textboxNombreModificar.Enabled = false;
-            textboxUsuarioModificar.Enabled = false;
             textboxApellidoModificar.Enabled = false;
             textboxTelefonoModificar.Enabled = false;
             textboxCelularModificar.Enabled = false;
             labelContraseñaTemporal.Text = GenerarClave(8);
             btnModificar.Enabled = false;
             btnLimpiarModificar.Enabled = false;
-
-
         }
 
         private void btnRegresarEliminar_Click(object sender, EventArgs e)
         {
             MenuPrincipal menu = new MenuPrincipal();
-            this.Close();
+            this.Hide();
             menu.Show();
         }
 
@@ -225,14 +216,14 @@ namespace Transporte_Cristina
 
         private void btnLimpiarModificar_Click(object sender, EventArgs e)
         {
-            textboxEdadModificar.Clear();
+            textboxApellidoModificar.Clear();
             textboxNombreModificar.Clear();
-            textboxUsuarioModificar.Clear();
             textboxUsuarioBusqueda.Clear();
             textboxIdentidadModificar.Clear();
-            comboboxEstadoModificar.SelectedIndex = -1;
+            comboBoxEstado.SelectedIndex = -1;
             comboboxPuestoModificar.SelectedIndex = -1;
-
+            textboxTelefonoModificar.Clear();
+            textboxCelularModificar.Clear();
         }
 
         private void textboxUsuarioModificar_TextChanged_1(object sender, EventArgs e)
@@ -245,15 +236,9 @@ namespace Transporte_Cristina
             textboxNombreModificar.MaxLength = 25;
         }
 
-        private void textboxEdadModificar_TextChanged(object sender, EventArgs e)
-        {
-            textboxEdadModificar.MaxLength = 2;
-        }
-
-               
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Eliminar();
+            ModificarEstado();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -268,7 +253,7 @@ namespace Transporte_Cristina
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
-                Usuario= sdr.GetString(0);
+                Usuario = sdr.GetString(0);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
@@ -278,16 +263,15 @@ namespace Transporte_Cristina
                 {
                     MessageBox.Show("Empleado(a) o Usuario Encontrado", "Busqueda", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     textboxIdentidadModificar.Enabled = true;
-                    textboxEdadModificar.Enabled = true;
-                    comboboxEstadoModificar.Enabled = true;
+                    comboBoxEstado.Enabled = true;
                     comboboxPuestoModificar.Enabled = true;
                     textboxNombreModificar.Enabled = true;
-                    textboxUsuarioModificar.Enabled = true;
                     btnLimpiarModificar.Enabled = true;
                     btnModificar.Enabled = true;
                     textboxApellidoModificar.Enabled = true;
                     textboxTelefonoModificar.Enabled = true;
                     textboxCelularModificar.Enabled = true;
+                    textboxUsuarioBusqueda.Enabled = false;
                 }
                 else
                 {
@@ -308,20 +292,18 @@ namespace Transporte_Cristina
         }
         private void Modificar()
         {
-            string Identidad_Empleado = textboxIdentidadAgregar.Text;
-            string Nombre_Empleado = textboxNombreAgregar.Text;
-            string Apellido_Empleado = textboxApellidoAgregar.Text;
-            string Edad = textboxEdadAgregar.Text;
-            string Usuario = textboxUsuarioAgregar.Text;
-            string Telefono = textboxTelefonoAgregar.Text;
-            string Celular = textboxCelularAgregar.Text;
+            string Usuario = textboxUsuarioBusqueda.Text;
+            string Identidad_Empleado = textboxIdentidadModificar.Text;
+            string Nombre_Empleado = textboxNombreModificar.Text;
+            string Apellido_Empleado = textboxApellidoModificar.Text;
+            string Telefono = textboxTelefonoModificar.Text;
+            string Celular = textboxCelularModificar.Text;
             bool IsExist = false;
-            SqlCommand sql = new SqlCommand("Select * from Empleados Where Usuario = '" + Usuario + "' or Identidad_Empleado='" + Identidad_Empleado + "'", Conexion.Obtenerconexion());
+            SqlCommand sql = new SqlCommand("Select * from Empleados Where Usuario = '" + Usuario + "'", Conexion.Obtenerconexion());
             SqlDataReader sdr = sql.ExecuteReader();
             if (sdr.Read())
             {
-                Identidad_Empleado = sdr.GetString(0);
-                Usuario = sdr.GetString(3);
+                Identidad_Empleado = sdr.GetString(1);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
@@ -331,95 +313,47 @@ namespace Transporte_Cristina
                 {
                     MessageBox.Show("Identidad de Empleado ya existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                if (Usuario.Equals(textboxUsuarioModificar.Text))
-                {
-                    MessageBox.Show("Usuario ya existente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
             else
             {
-                if (textboxIdentidadModificar.Text == "" && textboxNombreModificar.Text == "" && textboxEdadModificar.Text == "" && textboxUsuarioModificar.Text == "" && comboboxPuestoModificar.Text == "" && comboboxEstadoModificar.Text == "")
+                if (checkboxIdentidad.Checked == true) 
                 {
-                    MessageBox.Show("Complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    SqlCommand update = new SqlCommand(@"Update Empleados set Identidad_Empleado = '" + Identidad_Empleado + "' Where Usuario = '" + Usuario + "'", Conexion.Obtenerconexion());
+                    update.ExecuteNonQuery();
+                    MessageBox.Show("Informacion Actualizada", "Usuario Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textboxNombreModificar.Enabled = false;
+                    textboxApellidoModificar.Enabled = false;
                 }
                 else
                 {
-                    if (comboboxPuestoModificar.Text == "Gerente" && comboboxEstadoModificar.Text == "Activo")
-                    {
-                        int Cod_Puesto = 1;
-                        int Cod_Estado = 1;
-                        SqlCommand update = new SqlCommand(@"Update Empleados Set Identidad_Empleado='" + Identidad_Empleado + "',Nombre_Empleado='" + Nombre_Empleado + "',Edad='" + Edad + "',Usuario ='" + Usuario + "',Cod_Puesto='" + Cod_Puesto + "', Cod_Estado='" + Cod_Estado + "' Where Identidad_Empleado='" + textboxUsuarioBusqueda.Text + "'", Conexion.Obtenerconexion());
-                        update.ExecuteNonQuery();
-                        MessageBox.Show("Usuario actualizado con Exito.", "Actualizacion Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else if (comboboxPuestoModificar.Text == "Gerente" && comboboxEstadoModificar.Text == "Inactivo")
-                    {
-                        int Cod_Puesto = 1;
-                        int Cod_Estado = 2;
-                        SqlCommand update = new SqlCommand(@"Update Empleados Set Identidad_Empleado='" + Identidad_Empleado + "',Nombre_Empleado='" + Nombre_Empleado + "',Edad='" + Edad + "',Usuario ='" + Usuario + "',Cod_Puesto='" + Cod_Puesto + "', Cod_Estado='" + Cod_Estado + "'Where Identidad_Empleado='" + textboxUsuarioBusqueda.Text + "'", Conexion.Obtenerconexion());
-                        update.ExecuteNonQuery();
-                        MessageBox.Show("Usuario actualizado con Exito.", "Actualizacion Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario no pudo ser actualizado", "Actualizacion No Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    if (comboboxPuestoModificar.Text == "Cajero" && comboboxEstadoModificar.Text == "Activo")
-                    {
-                        int Cod_Puesto = 2;
-                        int Cod_Estado = 1;
-                        SqlCommand update = new SqlCommand(@"Update Empleados Set Identidad_Empleado='" + Identidad_Empleado + "',Nombre_Empleado='" + Nombre_Empleado + "',Edad='" + Edad + "',Usuario ='" + Usuario + "',Cod_Puesto='" + Cod_Puesto + "', Cod_Estado='" + Cod_Estado + "' Where Identidad_Empleado='" + textboxUsuarioBusqueda.Text + "'", Conexion.Obtenerconexion());
-                        update.ExecuteNonQuery();
-                        MessageBox.Show("Usuario actualizado con Exito.", "Actualizacion Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else if (comboboxPuestoModificar.Text == "Cajero" && comboboxEstadoModificar.Text == "Inactivo")
-                    {
-                        int Cod_Puesto = 2;
-                        int Cod_Estado = 2;
-                        SqlCommand update = new SqlCommand(@"Update Empleados Set Identidad_Empleado='" + Identidad_Empleado + "',Nombre_Empleado='" + Nombre_Empleado + "',Edad='" + Edad + "',Usuario ='" + Usuario + "',Cod_Puesto='" + Cod_Puesto + "', Cod_Estado='" + Cod_Estado + "'Where Identidad_Empleado='" + textboxUsuarioBusqueda.Text + "'", Conexion.Obtenerconexion());
-                        update.ExecuteNonQuery();
-                        MessageBox.Show("Usuario actualizado con Exito.", "Actualizacion Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario no pudo ser actualizado", "Actualizacion No Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                    MessageBox.Show("Usuario no pudo ser actualizado.", "Actualizacion No Realizada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
             }
         }
 
-        private void textboxUsuarioModificar_TextChanged_2(object sender, EventArgs e)
-        {
-            textboxUsuarioModificar.MaxLength = 25;
-        }
 
-
-        private void Eliminar()
+        private void ModificarEstado()
         {
-            string Usuario = textboxUsuarioEliminar.Text;
+            string Usuario = textboxUsuarioEstado.Text;
             int Codigo_Usuario = 0;
-            int reset = 0;
             bool IsExist = false;
-            SqlCommand cmd = new SqlCommand("select * from Empleados where Usuario ='" + textboxUsuarioEliminar.Text + "'", Conexion.Obtenerconexion());
+            SqlCommand cmd = new SqlCommand("select * from Empleados where Usuario ='" + textboxUsuarioEstado.Text + "'", Conexion.Obtenerconexion());
             cmd.Parameters.AddWithValue("@Codigo_Usuario", Usuario);
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
                 Codigo_Usuario = sdr.GetInt32(0);
-                Usuario = sdr.GetString(7);
+                Usuario = sdr.GetString(6);
                 IsExist = true;
             }
-            reset = Codigo_Usuario - 1;
             if (IsExist)
             {
-                if (Usuario.Equals(textboxUsuarioEliminar.Text))
+                if (Usuario.Equals(textboxUsuarioEstado.Text))
                 {
-                    SqlCommand command = new SqlCommand("Delete From Empleados Where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
-                    SqlCommand sqlCommand = new SqlCommand("Delete From Respuestas Where Codigo_Usuario = '" + Codigo_Usuario + "'", Conexion.Obtenerconexion());
+                    SqlCommand command = new SqlCommand("Update Empleados Set Codigo_Estado = '" + 2 + "' Where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
                     command.ExecuteNonQuery();
-                    sqlCommand.ExecuteNonQuery();
-                    MessageBox.Show("Cuenta eliminada con exito", "Eliminacion con Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Estado de Usuario modificado con exito.", "Modificacion con Exito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -444,7 +378,7 @@ namespace Transporte_Cristina
 
         private void textboxUsuarioEliminar_TextChanged(object sender, EventArgs e)
         {
-            textboxUsuarioEliminar.MaxLength = 25;
+            textboxUsuarioEstado.MaxLength = 25;
         }
 
         private void textboxNombreAgregar_KeyPress(object sender, KeyPressEventArgs e)
@@ -462,15 +396,11 @@ namespace Transporte_Cristina
             Validar.Sololetras(e);
         }
 
-        private void textboxEdadAgregar_KeyPress(object sender, KeyPressEventArgs e)
+        private void textboxAgregar_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.Solonumeros(e);
         }
 
-        private void textboxEdadAgregar_TextChanged(object sender, EventArgs e)
-        {
-            textboxEdadAgregar.MaxLength = 2;
-        }
 
         private void textboxTelefonoAgregar_TextChanged(object sender, EventArgs e)
         {
@@ -527,7 +457,7 @@ namespace Transporte_Cristina
             textboxApellidoModificar.MaxLength = 25;
         }
 
-        private void textboxEdadModificar_KeyPress(object sender, KeyPressEventArgs e)
+        private void _KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.Solonumeros(e);
         }
@@ -550,6 +480,249 @@ namespace Transporte_Cristina
         private void textboxCelularModificar_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validar.Solonumeros(e);
+        }
+
+        private void textboxIdentidadAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxIdentidadAgregar.Text))
+            {
+                e.Cancel = true;
+                textboxIdentidadAgregar.Focus();
+                errorProviderAdmin.SetError(textboxIdentidadAgregar, "Ingrese su identidad.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxIdentidadAgregar, null);
+            }
+        }
+
+        private void btnLimpiar_Click_1(object sender, EventArgs e)
+        {
+            textboxIdentidadAgregar.Clear();
+            textboxApellidoAgregar.Clear();
+            textboxNombreAgregar.Clear();
+            textboxUsuarioAgregar.Clear();
+            textboxTelefonoAgregar.Clear();
+            textboxCelularAgregar.Clear();
+            comboboxPuestoAgregar.SelectedIndex = -1;
+        }
+
+        private void textboxNombreAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxNombreAgregar.Text))
+            {
+                e.Cancel = true;
+                textboxNombreAgregar.Focus();
+                errorProviderAdmin.SetError(textboxNombreAgregar, "Ingrese su nombre.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxNombreAgregar, null);
+            }
+        }
+
+        private void textboxApellidoAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxApellidoAgregar.Text))
+            {
+                e.Cancel = true;
+                textboxApellidoAgregar.Focus();
+                errorProviderAdmin.SetError(textboxApellidoAgregar, "Ingrese su apellido.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxApellidoAgregar, null);
+            }
+        }
+
+        private void comboboxPuestoAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(comboboxPuestoAgregar.Text))
+            {
+                e.Cancel = true;
+                comboboxPuestoAgregar.Focus();
+                errorProviderAdmin.SetError(comboboxPuestoAgregar, "Ingrese su puesto.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(comboboxPuestoAgregar, null);
+            }
+        }
+
+        private void textboxUsuarioAgregar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.TextoConNumeros(e);
+        }
+
+        private void AdministracionEmpleados_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnRegresarModificar_Click_1(object sender, EventArgs e)
+        {
+            MenuPrincipal menu = new MenuPrincipal();
+            this.Hide();
+            menu.Show();
+        }
+
+        private void textboxNombreAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxNombreAgregar.MaxLength = 25;
+        }
+
+        private void textboxApellidoAgregar_TextChanged(object sender, EventArgs e)
+        {
+            textboxApellidoModificar.MaxLength = 25;
+        }
+
+        private void textboxTelefonoAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxTelefonoAgregar.Text))
+            {
+                e.Cancel = true;
+                textboxTelefonoAgregar.Focus();
+                errorProviderAdmin.SetError(textboxTelefonoAgregar, "Ingrese su telefono.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxTelefonoAgregar, null);
+            }
+        }
+
+        private void textboxCelularAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxCelularAgregar.Text))
+            {
+                e.Cancel = true;
+                textboxCelularAgregar.Focus();
+                errorProviderAdmin.SetError(textboxCelularAgregar, "Ingrese su celular.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxCelularAgregar, null);
+            }
+        }
+
+        private void textboxUsuarioAgregar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxUsuarioAgregar.Text))
+            {
+                e.Cancel = true;
+                textboxUsuarioAgregar.Focus();
+                errorProviderAdmin.SetError(textboxUsuarioAgregar, "Ingrese su usuario.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxUsuarioAgregar, null);
+            }
+        }
+
+        private void textboxUsuarioBusqueda_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxUsuarioBusqueda.Text))
+            {
+                e.Cancel = true;
+                textboxUsuarioBusqueda.Focus();
+                errorProviderAdmin.SetError(textboxUsuarioBusqueda, "Ingrese su usuario.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxUsuarioBusqueda, null);
+            }
+        }
+
+        private void textboxIdentidadModificar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxIdentidadModificar.Text))
+            {
+                e.Cancel = true;
+                textboxIdentidadModificar.Focus();
+                errorProviderAdmin.SetError(textboxIdentidadModificar, "Ingrese su Identidad.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxIdentidadModificar, null);
+            }
+        }
+
+        private void textboxNombreModificar_TextChanged_1(object sender, EventArgs e)
+        {
+            textboxNombreModificar.MaxLength = 25;
+        }
+
+        private void textboxNombreModificar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxNombreModificar.Text))
+            {
+                e.Cancel = true;
+                textboxNombreModificar.Focus();
+                errorProviderAdmin.SetError(textboxNombreModificar, "Ingrese su nombre.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxNombreModificar, null);
+            }
+        }
+
+        private void textboxApellidoModificar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(textboxApellidoModificar.Text))
+            {
+                e.Cancel = true;
+                textboxApellidoModificar.Focus();
+                errorProviderAdmin.SetError(textboxApellidoModificar, "Ingrese su apellido.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(textboxApellidoModificar, null);
+            }
+        }
+
+        private void textboxUsuarioModificar_TextChanged(object sender, EventArgs e)
+        {
+            textboxNombreModificar.MaxLength = 25;
+        }
+
+        private void textboxUsuarioModificar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.TextoConNumeros(e);
+        }
+
+        private void comboboxPuestoModificar_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(comboboxPuestoModificar.Text))
+            {
+                e.Cancel = true;
+                comboboxPuestoModificar.Focus();
+                errorProviderAdmin.SetError(comboboxPuestoModificar, "Seleccione un puesto.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderAdmin.SetError(comboboxPuestoModificar, null);
+            }
+        }
+
+        private void textboxContraseña_TextChanged(object sender, EventArgs e)
+        {
+            textboxContraseña.MaxLength = 25;
+        }
+
+        private void textboxContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.TextoConNumeros(e);
         }
     }
 }

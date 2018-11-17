@@ -38,25 +38,7 @@ namespace Transporte_Cristina
             return dt;
         }
 
-        /*public bool validarPregunta(string Id_Empleado, string Respuesta)
-         {
-             connection.Open();
-             SqlCommand cmd = new SqlCommand("Select * from Respuestas where Id_Empleado ='" + Id_Empleado + "' and Respuesta='" + Respuesta + "'");
-
-             SqlDataReader leer = cmd.ExecuteReader();
-             if (leer.Read() == true)
-             {
-                 connection.Close();
-                 return true;
-             }
-             else
-             {
-                 connection.Close();
-                 return false;
-             }
-
-
-         }*/
+       
 
     }
 

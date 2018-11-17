@@ -20,19 +20,14 @@ namespace Transporte_Cristina
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dialogResult = MessageBox.Show("¿Desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
-
-        private void btnFacturacionBoletos_Click(object sender, EventArgs e)
-        {
-            /*FacturacionBoleteria boletos = new FacturacionBoleteria();*/
-            this.Close();
-            //boletos.Show();
-        }
-
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            btnArqueoCaja.Enabled = false;
             btnControlRutas.Enabled = false;
             string Codigo_Puesto="";
             string Usuario = lblUsuario.Text;
@@ -45,11 +40,12 @@ namespace Transporte_Cristina
             }
             if(Codigo_Puesto=="2")
             {
-                btnAdminUsuarios.Enabled = false;
-                btnAgregarBus.Enabled = false;
-                btnArqueoCaja.Enabled = false;
-                btnControlRutas.Enabled = false;
+                btnAdminUsuarios.Visible = false;
+                btnAgregarBus.Visible = false;
+                btnArqueoCaja.Visible = false;
+                btnControlRutas.Visible = false;
             }
+            
             
         }
 
@@ -76,7 +72,10 @@ namespace Transporte_Cristina
 
         private void btnArqueoCaja_Click(object sender, EventArgs e)
         {
-
+            ArqueoCaja arqueo = new ArqueoCaja();
+            arqueo.User = lblUsuario.Text;
+            this.Hide();
+            arqueo.Show();
         }
     }
 }

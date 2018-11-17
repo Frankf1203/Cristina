@@ -58,6 +58,12 @@
     <Compile Include="Agregar Buses.Designer.cs">
       <DependentUpon>Agregar Buses.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArqueoCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArqueoCaja.Designer.cs">
+      <DependentUpon>ArqueoCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Conexion.cs" />
     <Compile Include="Encriptacion.cs" />
     <Compile Include="IngresarCliente.cs">
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Agregar Buses.resx">
       <DependentUpon>Agregar Buses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArqueoCaja.resx">
+      <DependentUpon>ArqueoCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IngresarCliente.resx">
       <DependentUpon>IngresarCliente.cs</DependentUpon>

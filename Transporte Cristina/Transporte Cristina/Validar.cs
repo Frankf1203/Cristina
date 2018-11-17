@@ -26,6 +26,14 @@ namespace Transporte_Cristina
                 e.Handled = true;
             }
         }
+        public static void TextoConNumeros(KeyPressEventArgs e)
+        {
+            if(!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
+            {
+                MessageBox.Show("No puede ingresar simbolos. Use solamente numeros o letras.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+            }
+        }
         /*public static void SoloLetras(KeyPressEventArgs v)
         {
             if (Char.IsLetter(v.KeyChar))

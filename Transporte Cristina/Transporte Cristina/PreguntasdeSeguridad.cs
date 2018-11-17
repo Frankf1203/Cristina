@@ -61,8 +61,8 @@ namespace Transporte_Cristina
             string Usuario = lblUsuario.Text;
             string Codigo_Usuario = "";
             int Cod_Pregunta;
-            string Respuesta1 = txtRespuesta1.Text;
-            string Respuesta2 = txtRespuesta2.Text;
+            string Respuesta1 = Encriptacion.Encrypt(txtRespuesta1.Text);
+            string Respuesta2 = Encriptacion.Encrypt(txtRespuesta2.Text);
             SqlCommand cmd = new SqlCommand("select Codigo_Usuario from Empleados where Usuario ='" + lblUsuario.Text + "'", Conexion.Obtenerconexion());
             cmd.Parameters.AddWithValue("@Usuario", Convert.ToString(lblUsuario.Text));
             SqlDataReader sdr = cmd.ExecuteReader();

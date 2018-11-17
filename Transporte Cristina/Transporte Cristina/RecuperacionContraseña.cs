@@ -13,7 +13,8 @@ namespace Transporte_Cristina
 {
     public partial class RecuperacionContraseña : Form
     {
-
+        public string Usuario = "";
+        public string Codigo_Usuario = "";
         public RecuperacionContraseña()
         {
             InitializeComponent();
@@ -26,16 +27,59 @@ namespace Transporte_Cristina
             this.Hide();
             inicio.Show();
         }
-
-        private void btnRecuperar_Click(object sender, EventArgs e)
+        private void txtUsuario_Validating(object sender, CancelEventArgs e)
         {
-            string Usuario = txtUsuario.Text;
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                e.Cancel = true;
+                txtUsuario.Focus();
+                errorProviderRecuperacion.SetError(txtUsuario, "Ingrese su contraseña.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderRecuperacion.SetError(txtUsuario, null);
+            }
+        }
+
+        private void cmbPregunta_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(cmbPregunta.Text))
+            {
+                e.Cancel = true;
+                cmbPregunta.Focus();
+                errorProviderRecuperacion.SetError(cmbPregunta, "Ingrese su pregunta.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderRecuperacion.SetError(cmbPregunta, null);
+            }
+        }
+
+        private void txtRespuesta_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtRespuesta.Text))
+            {
+                e.Cancel = true;
+                txtRespuesta.Focus();
+                errorProviderRecuperacion.SetError(txtRespuesta, "Ingrese su respuesta.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderRecuperacion.SetError(txtRespuesta, null);
+            }
+        }
+        private void Validacion()
+        {
+            Usuario = txtUsuario.Text;
             bool IsExist = false;
             SqlCommand cmd = new SqlCommand("Select * From Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
-                Usuario = sdr.GetString(7);
+                Usuario = sdr.GetString(6);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
@@ -43,10 +87,18 @@ namespace Transporte_Cristina
             {
                 if (Usuario.Equals(txtUsuario.Text))
                 {
-
+                    SqlCommand sql = new SqlCommand("select Codigo_Usuario from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
+                    sql.Parameters.AddWithValue("@Usuario", Codigo_Usuario);
+                    SqlDataReader reader = sql.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        Codigo_Usuario = reader["Codigo_Usuario"].ToString();
+                    }
+                    Conexion.Obtenerconexion().Close();
                     cmbPregunta.Enabled = true;
                     txtRespuesta.Enabled = true;
-                    btnRecupar.Enabled = true;
+                    btnRecuperar.Enabled = true;
+                    txtUsuario.Enabled = false;
                 }
                 else
                 {
@@ -58,14 +110,17 @@ namespace Transporte_Cristina
                 MessageBox.Show("Usuario inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-
+        }
+        private void btnRecuperar_Click(object sender, EventArgs e)
+        {
+            Validacion();
         }
 
         private void RecuperacionContraseña_Load(object sender, EventArgs e)
         {
             cmbPregunta.Enabled = false;
             txtRespuesta.Enabled = false;
-            btnRecupar.Enabled = false;
+            btnRecuperar.Enabled = false;
 
         }
         private const Keys k_copy = Keys.Control | Keys.C;
@@ -86,54 +141,48 @@ namespace Transporte_Cristina
         private void btnRegresar_Click_1(object sender, EventArgs e)
         {
             InicioSesion inicio = new InicioSesion();
-            this.Close();
+            this.Hide();
             inicio.Show();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void RecuperacionPreguntas()
         {
-            string Usuario = txtUsuario.Text;
+            string Cod_Usuario = "";
+            Cod_Usuario = Codigo_Usuario;
             string Respuesta = "";
-            string Codigo_Usuario = "";
-
-            SqlCommand sql = new SqlCommand("Select Codigo_Usuario from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
-            sql.Parameters.AddWithValue("@Usuario", Codigo_Usuario);
-            SqlDataReader reader = sql.ExecuteReader();
-            if (reader.Read())
+            
+            if (cmbPregunta.Text == "¿Cual es tu color favorito?")
             {
-                Codigo_Usuario = reader["Codigo_Usuario"].ToString();
-            }
-            Conexion.Obtenerconexion().Close();
-            if (Usuario.Equals(txtUsuario.Text))
-            {
-
-                if (cmbPregunta.Text == "¿Cual es tu color favorito?")
+                int Cod_Pregunta = 1;
+                SqlCommand select = new SqlCommand("Select Respuesta from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "'and Cod_Pregunta = '" +Cod_Pregunta +"'", Conexion.Obtenerconexion());
+                select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
+                SqlDataReader sdr = select.ExecuteReader();
+                if (sdr.Read())
                 {
-                    SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 1 + "' ", Conexion.Obtenerconexion());
-                    select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
-                    SqlDataReader sdr = select.ExecuteReader();
-                    if (sdr.Read())
-                    {
-                        Respuesta = sdr["Respuesta"].ToString();
+                    Respuesta = sdr["Respuesta"].ToString();
 
-                    }
-                    if (Respuesta.Equals(txtRespuesta.Text))
-                    {
-                        MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        NuevaContraseña nueva = new NuevaContraseña();
-                        nueva.User = Usuario;
-                        this.Hide();
-                        nueva.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                if (txtRespuesta.Text == "")
+                {
+                    MessageBox.Show("Ingrese su respuesta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRespuesta.Focus();
+                }
+                else if (Encriptacion.Decrypt(Respuesta).Equals(txtRespuesta.Text))
+                {
+                    MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    NuevaContraseña nueva = new NuevaContraseña();
+                    nueva.User = Usuario;
+                    this.Hide();
+                    nueva.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             if (cmbPregunta.Text == "¿Cual es el nombre del primer libro que leiste?")
             {
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 2 + "' ", Conexion.Obtenerconexion());
+                int Cod_Pregunta = 2;
+                SqlCommand select = new SqlCommand("Select Respuesta from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "'and Cod_Pregunta = '" + Cod_Pregunta + "'", Conexion.Obtenerconexion());
                 select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
@@ -141,7 +190,12 @@ namespace Transporte_Cristina
                     Respuesta = sdr["Respuesta"].ToString();
 
                 }
-                if (Respuesta.Equals(txtRespuesta.Text))
+                if(txtRespuesta.Text == "")
+                {
+                    MessageBox.Show("Ingrese su respuesta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRespuesta.Focus();
+                }
+                else if (Encriptacion.Decrypt(Respuesta).Equals(txtRespuesta.Text))
                 {
                     MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevaContraseña nueva = new NuevaContraseña();
@@ -154,11 +208,10 @@ namespace Transporte_Cristina
                     MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             if (cmbPregunta.Text == "¿En que año terminaste la secundaria?")
             {
-
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 3 + "' ", Conexion.Obtenerconexion());
+                int Cod_Pregunta = 3;
+                SqlCommand select = new SqlCommand("Select Respuesta from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "'and Cod_Pregunta = '" + Cod_Pregunta + "'", Conexion.Obtenerconexion());
                 select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
@@ -166,7 +219,12 @@ namespace Transporte_Cristina
                     Respuesta = sdr["Respuesta"].ToString();
 
                 }
-                if (Respuesta.Equals(txtRespuesta.Text))
+                if (txtRespuesta.Text == "")
+                {
+                    MessageBox.Show("Ingrese su respuesta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRespuesta.Focus();
+                }
+                else if (Encriptacion.Decrypt(Respuesta).Equals(txtRespuesta.Text))
                 {
                     MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevaContraseña nueva = new NuevaContraseña();
@@ -179,11 +237,10 @@ namespace Transporte_Cristina
                     MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             if (cmbPregunta.Text == "¿Cual es el nombre de tu mascota?")
             {
-
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 4 + "' ", Conexion.Obtenerconexion());
+                int Cod_Pregunta = 4;
+                SqlCommand select = new SqlCommand("Select Respuesta from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "'and Cod_Pregunta = '" + Cod_Pregunta + "'", Conexion.Obtenerconexion());
                 select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
@@ -191,7 +248,12 @@ namespace Transporte_Cristina
                     Respuesta = sdr["Respuesta"].ToString();
 
                 }
-                if (Respuesta.Equals(txtRespuesta.Text))
+                if (txtRespuesta.Text == "")
+                {
+                    MessageBox.Show("Ingrese su respuesta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRespuesta.Focus();
+                }
+                else if (Encriptacion.Decrypt(Respuesta).Equals(txtRespuesta.Text))
                 {
                     MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevaContraseña nueva = new NuevaContraseña();
@@ -204,17 +266,23 @@ namespace Transporte_Cristina
                     MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             if (cmbPregunta.Text == "¿Cual es tu pelicula favorita?")
             {
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 5 + "' ", Conexion.Obtenerconexion());
+                int Cod_Pregunta = 5;
+                SqlCommand select = new SqlCommand("Select Respuesta from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "'and Cod_Pregunta = '" + Cod_Pregunta + "'", Conexion.Obtenerconexion());
                 select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
                 {
                     Respuesta = sdr["Respuesta"].ToString();
+
                 }
-                if (Respuesta.Equals(txtRespuesta.Text))
+                if (txtRespuesta.Text == "")
+                {
+                    MessageBox.Show("Ingrese su respuesta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRespuesta.Focus();
+                }
+                else if (Encriptacion.Decrypt(Respuesta).Equals(txtRespuesta.Text))
                 {
                     MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevaContraseña nueva = new NuevaContraseña();
@@ -227,10 +295,10 @@ namespace Transporte_Cristina
                     MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
             if (cmbPregunta.Text == "¿Cual es tu restaurante preferido?")
             {
-                SqlCommand select = new SqlCommand("Select * from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "' and Cod_Pregunta='" + 6 + "' ", Conexion.Obtenerconexion());
+                int Cod_Pregunta = 6;
+                SqlCommand select = new SqlCommand("Select Respuesta from Respuestas where Codigo_Usuario ='" + Codigo_Usuario + "'and Cod_Pregunta = '" + Cod_Pregunta + "'", Conexion.Obtenerconexion());
                 select.Parameters.AddWithValue("@Codigo_Usuario", Respuesta);
                 SqlDataReader sdr = select.ExecuteReader();
                 if (sdr.Read())
@@ -238,7 +306,12 @@ namespace Transporte_Cristina
                     Respuesta = sdr["Respuesta"].ToString();
 
                 }
-                if (Respuesta.Equals(txtRespuesta.Text))
+                if (txtRespuesta.Text == "")
+                {
+                    MessageBox.Show("Ingrese su respuesta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtRespuesta.Focus();
+                }
+                else if (Encriptacion.Decrypt(Respuesta).Equals(txtRespuesta.Text))
                 {
                     MessageBox.Show("Respuesta correcta.", "Recuperacion Contraseña", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevaContraseña nueva = new NuevaContraseña();
@@ -250,16 +323,38 @@ namespace Transporte_Cristina
                 {
                     MessageBox.Show("Respuesta incorrecta.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
-
-
-
+            
         }
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RecuperacionPreguntas();
+        }
+        
         private void txtRespuesta_TextChanged(object sender, EventArgs e)
         {
             txtRespuesta.MaxLength = 25;
+        }
+               
+
+        private void RecuperacionContraseña_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.TextoConNumeros(e);
+        }
+
+        private void txtRespuesta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.TextoConNumeros(e);
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            txtUsuario.MaxLength = 25;
         }
     }
 

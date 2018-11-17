@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+
 
 
 namespace Transporte_Cristina
@@ -24,7 +18,12 @@ namespace Transporte_Cristina
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dialogResult = MessageBox.Show("¿Desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -33,8 +32,7 @@ namespace Transporte_Cristina
             this.Hide();
             recuperacion.Show();
         }
-
-        private void btnIniciarSesion_Click(object sender, EventArgs e)
+        private void IniciarSesion()
         {
             string Codigo_Usuario = "";
             string ID = "";
@@ -48,8 +46,8 @@ namespace Transporte_Cristina
             SqlDataReader sdr = cmd.ExecuteReader();
             if (sdr.Read())
             {
-                Usuario = sdr.GetString(7);
-                Password = sdr.GetString(8);
+                Usuario = sdr.GetString(6);
+                Password = sdr.GetString(7);
                 IsExist = true;
             }
             Conexion.Obtenerconexion().Close();
@@ -63,10 +61,10 @@ namespace Transporte_Cristina
                     if (reader.Read())
                     {
                         Codigo_Estado = reader["Codigo_Estado"].ToString();
-                        
+
                     }
                     Conexion.Obtenerconexion().Close();
-                    
+
                     if (Encriptacion.Decrypt(Password).Equals(txtContraseña.Text))
                     {
                         if (Codigo_Estado == "6")
@@ -75,20 +73,20 @@ namespace Transporte_Cristina
                             SqlCommand cd = new SqlCommand("Select Codigo_Usuario From Empleados Where Codigo_Estado = '" + 6 + "'", Conexion.Obtenerconexion());
                             cd.Parameters.AddWithValue("@Codigo_Estado", Codigo_Usuario);
                             SqlDataReader sq = cd.ExecuteReader();
-                            if(sq.Read())
+                            if (sq.Read())
                             {
                                 Codigo_Usuario = sq["Codigo_Usuario"].ToString();
                             }
                             ID = Codigo_Usuario;
-                            
+
                             SqlCommand command = new SqlCommand("Select * From Respuestas Where Codigo_Usuario = '" + ID + "'", Conexion.Obtenerconexion());
                             SqlDataReader dataReader = command.ExecuteReader();
-                            if(dataReader.Read())
+                            if (dataReader.Read())
                             {
                                 Codigo_Usuario = dataReader.GetString(0);
                                 IfExist = true;
                             }
-                            if(IfExist)
+                            if (IfExist)
                             {
                                 MessageBox.Show("Su cuenta es nueva. Debe establecer las Preguntas de Seguridad y una nueva contraseña", "Primer Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 NuevaContraseña nueva = new NuevaContraseña();
@@ -105,6 +103,7 @@ namespace Transporte_Cristina
                                 seguridad.Show();
 
                             }
+
                         }
                         else if (Codigo_Estado == "5")
                         {
@@ -115,7 +114,7 @@ namespace Transporte_Cristina
                         }
                         else if (Codigo_Estado == "2")
                         {
-                            MessageBox.Show("Su Usuario esta inactivo. Contacte al Administrador.");
+                            MessageBox.Show("Su Usuario esta inactivo. Contacte al Administrador.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else if (Codigo_Estado == "1")
                         {
@@ -129,12 +128,12 @@ namespace Transporte_Cristina
                     else
                     {
                         int Intentos = 0;
-                        MessageBox.Show("¡Contraseña incorrecta! Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("¡Usuario o contraseña incorrecto! Intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         SqlCommand command = new SqlCommand("select * from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
                         SqlDataReader rd = command.ExecuteReader();
                         if (rd.Read())
                         {
-                            Intentos = rd.GetInt32(11);
+                            Intentos = rd.GetInt32(10);
                             IsExist = true;
                         }
 
@@ -162,14 +161,13 @@ namespace Transporte_Cristina
             }
             else
             {
-                MessageBox.Show("Usuario no existente!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡Ingrese su Usuario o Contraseña!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
-
-
-
-
-
+        private void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            IniciarSesion();
         }
 
         private void InicioSesion_Load(object sender, EventArgs e)
@@ -203,7 +201,53 @@ namespace Transporte_Cristina
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                IniciarSesion();
+            }
+            Validar.TextoConNumeros(e);
+
         }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            txtUsuario.MaxLength = 25;
+        }
+
+        private void txtContraseña_TextChanged(object sender, EventArgs e)
+        {
+            txtContraseña.MaxLength = 25;
+        }
+
+        private void txtUsuario_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                e.Cancel = true;
+                txtUsuario.Focus();
+                errorProviderInicio.SetError(txtUsuario, "Ingrese su usuario.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderInicio.SetError(txtUsuario, null);
+            }
+        }
+
+        private void txtContraseña_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtContraseña.Text))
+            {
+                e.Cancel = true;
+                txtContraseña.Focus();
+                errorProviderInicio.SetError(txtContraseña, "Ingrese su contraseña.");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderInicio.SetError(txtContraseña, null);
+            }
+        }
+               
     }
 }
