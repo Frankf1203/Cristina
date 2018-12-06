@@ -19,15 +19,13 @@ namespace Transporte_Cristina
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            RegistroEncomienda encomienda = new RegistroEncomienda();
             this.Close();
         }
 
         private void ListadoEncomienda_Load(object sender, EventArgs e)
         {
             Conexion conexion = new Conexion();
-
-            dataGridView1.DataSource = conexion.tabla("Select *From Factura_Envio");
+            dataGridView1.DataSource = conexion.tabla("Select *From Factura_Encomienda");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

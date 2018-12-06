@@ -462,6 +462,12 @@ namespace Transporte_Cristina
         {
             lblFechaHora.Text = DateTime.Now.ToString();
         }
+
+        private void btnListado_Click(object sender, EventArgs e)
+        {
+            ListadoEncomienda listado = new ListadoEncomienda();
+            listado.Show();
+        }
     }
     
 

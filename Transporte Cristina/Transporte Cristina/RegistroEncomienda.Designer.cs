@@ -125,6 +125,7 @@
             this.btnListado.TabIndex = 59;
             this.btnListado.Text = "Ver Listado";
             this.btnListado.UseVisualStyleBackColor = true;
+            this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
             // 
             // label13
             // 
