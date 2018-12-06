@@ -34,5 +34,10 @@ namespace Transporte_Cristina
         {
             this.Close();
         }
+
+        private void Listado_Buses_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

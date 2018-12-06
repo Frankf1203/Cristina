@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Transporte_Cristina
@@ -26,7 +19,7 @@ namespace Transporte_Cristina
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtnumero.Text == "" && txtPlaca.Text == "" && txtMarca.Text == "" && txtmodelo.Text == "")
+            if (txtPlaca.Text == "" && txtMarca.Text == "" && txtmodelo.Text == "")
             {
                 MessageBox.Show("Complete todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -38,28 +31,20 @@ namespace Transporte_Cristina
 
         private void Registrar()
         {
-
-            string No_Bus = txtnumero.Text;
             string Placa_Bus = txtPlaca.Text;
             string Marca_Bus = txtMarca.Text;
             string Modelo_Bus = txtmodelo.Text;
-            int Cantidad_Asientos = Convert.ToInt32(txtasientos.Text);
-
-            SqlCommand insert = new SqlCommand("Insert into Buses(No_Bus, Placa_Bus, Marca_Bus, Modelo_Bus, Cantidad_Asientos)Values('" + No_Bus + "', '" + Placa_Bus + "','" + Marca_Bus + "','" + Modelo_Bus + "', '" + Cantidad_Asientos + "')", Conexion.Obtenerconexion());
+            SqlCommand insert = new SqlCommand("Insert into Buses(Placa_Bus, Marca_Bus, Modelo_Bus)Values('" + Placa_Bus + "','" + Marca_Bus + "','" + Modelo_Bus + "')", Conexion.Obtenerconexion());
             insert.ExecuteNonQuery();
             MessageBox.Show("Bus Registrado Con Exito.", "Cuenta Creada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            txtnumero.Clear();
             txtPlaca.Clear();
             txtMarca.Clear();
             txtmodelo.Clear();
-            txtasientos.Clear();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -71,11 +56,6 @@ namespace Transporte_Cristina
         private void Agregar_Buses_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void txtnumero_MouseDown(object sender, MouseEventArgs e)
-        {
-            Clipboard.Clear();
         }
 
         private void txtPlaca_MouseDown(object sender, MouseEventArgs e)
@@ -93,20 +73,11 @@ namespace Transporte_Cristina
             Clipboard.Clear();
         }
 
-        private void txtasientos_TextChanged(object sender, EventArgs e)
-        {
-            txtasientos.MaxLength = 2;
-        }
-
         private void txtasientos_MouseDown(object sender, MouseEventArgs e)
         {
             Clipboard.Clear();
         }
 
-        private void txtnumero_TextChanged(object sender, EventArgs e)
-        {
-            txtnumero.MaxLength = 2;
-        }
 
         private void txtPlaca_TextChanged(object sender, EventArgs e)
         {
@@ -130,7 +101,7 @@ namespace Transporte_Cristina
 
         private void txtPlaca_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            Validar.TextoConNumeros(e);
         }
 
         private void txtMarca_KeyPress(object sender, KeyPressEventArgs e)
@@ -138,14 +109,9 @@ namespace Transporte_Cristina
             Validar.Sololetras(e);
         }
 
-        private void txtasientos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validar.Solonumeros(e);
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (txtnumero.Text == "" && txtPlaca.Text == "" && txtMarca.Text == "" && txtmodelo.Text == "")
+            if (txtPlaca.Text == "" && txtMarca.Text == "" && txtmodelo.Text == "")
             {
                 MessageBox.Show("Complete todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -163,18 +129,26 @@ namespace Transporte_Cristina
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            txtnumero.Clear();
             txtPlaca.Clear();
             txtMarca.Clear();
             txtmodelo.Clear();
-            txtasientos.Clear();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             MenuPrincipal menu = new MenuPrincipal();
-            this.Close();
+            this.Hide();
             menu.Show();
+        }
+
+        private void txtmodelo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validar.TextoConNumeros(e);
+        }
+
+        private void Agregar_Buses_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

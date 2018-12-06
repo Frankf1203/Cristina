@@ -344,11 +344,19 @@ namespace Transporte_Cristina
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                Validacion();
+            }
             Validar.TextoConNumeros(e);
         }
 
         private void txtRespuesta_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                RecuperacionPreguntas();
+            }
             Validar.TextoConNumeros(e);
         }
 

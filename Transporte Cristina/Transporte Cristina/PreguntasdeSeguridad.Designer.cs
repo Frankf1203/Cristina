@@ -103,6 +103,7 @@
             this.txtRespuesta1.Size = new System.Drawing.Size(413, 26);
             this.txtRespuesta1.TabIndex = 5;
             this.txtRespuesta1.TextChanged += new System.EventHandler(this.txtRespuesta1_TextChanged);
+            this.txtRespuesta1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRespuesta1_KeyPress);
             // 
             // txtRespuesta2
             // 
@@ -111,6 +112,7 @@
             this.txtRespuesta2.Size = new System.Drawing.Size(413, 26);
             this.txtRespuesta2.TabIndex = 9;
             this.txtRespuesta2.TextChanged += new System.EventHandler(this.txtRespuesta2_TextChanged);
+            this.txtRespuesta2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRespuesta2_KeyPress);
             // 
             // label5
             // 

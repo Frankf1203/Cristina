@@ -57,12 +57,13 @@
             this.labelUsuarioBusqueda = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkboxPuesto = new System.Windows.Forms.CheckBox();
-            this.checkboxCelular = new System.Windows.Forms.CheckBox();
-            this.checkboxTelefono = new System.Windows.Forms.CheckBox();
-            this.checkboxApellido = new System.Windows.Forms.CheckBox();
-            this.checkboxNombre = new System.Windows.Forms.CheckBox();
-            this.checkboxIdentidad = new System.Windows.Forms.CheckBox();
+            this.labelContra = new System.Windows.Forms.Label();
+            this.labelPuestoModificar = new System.Windows.Forms.Label();
+            this.labelCelularModificar = new System.Windows.Forms.Label();
+            this.labelTelefonoModificar = new System.Windows.Forms.Label();
+            this.labelApellido = new System.Windows.Forms.Label();
+            this.labelNombreModificar = new System.Windows.Forms.Label();
+            this.labelIdentidadModificar = new System.Windows.Forms.Label();
             this.textboxContraseña = new System.Windows.Forms.TextBox();
             this.comboboxPuestoModificar = new System.Windows.Forms.ComboBox();
             this.btnRegresarModificar = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.textboxApellidoModificar = new System.Windows.Forms.TextBox();
             this.textboxNombreModificar = new System.Windows.Forms.TextBox();
             this.textboxIdentidadModificar = new System.Windows.Forms.TextBox();
-            this.checkboxContraseña = new System.Windows.Forms.CheckBox();
             this.tabPageEstado = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxEstado = new System.Windows.Forms.ComboBox();
@@ -105,6 +105,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(369, 589);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageAgregar
             // 
@@ -194,7 +195,6 @@
             this.textboxCelularAgregar.TabIndex = 28;
             this.textboxCelularAgregar.TextChanged += new System.EventHandler(this.textboxCelularAgregar_TextChanged);
             this.textboxCelularAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxCelularAgregar_KeyPress);
-            this.textboxCelularAgregar.Validating += new System.ComponentModel.CancelEventHandler(this.textboxCelularAgregar_Validating);
             // 
             // textboxTelefonoAgregar
             // 
@@ -204,7 +204,6 @@
             this.textboxTelefonoAgregar.TabIndex = 27;
             this.textboxTelefonoAgregar.TextChanged += new System.EventHandler(this.textboxTelefonoAgregar_TextChanged);
             this.textboxTelefonoAgregar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxTelefonoAgregar_KeyPress);
-            this.textboxTelefonoAgregar.Validating += new System.ComponentModel.CancelEventHandler(this.textboxTelefonoAgregar_Validating);
             // 
             // textboxApellidoAgregar
             // 
@@ -351,6 +350,7 @@
             this.textboxUsuarioBusqueda.Size = new System.Drawing.Size(187, 26);
             this.textboxUsuarioBusqueda.TabIndex = 44;
             this.textboxUsuarioBusqueda.TextChanged += new System.EventHandler(this.textboxUsuarioBusqueda_TextChanged_1);
+            this.textboxUsuarioBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxUsuarioBusqueda_KeyPress);
             this.textboxUsuarioBusqueda.Validating += new System.ComponentModel.CancelEventHandler(this.textboxUsuarioBusqueda_Validating);
             // 
             // labelUsuarioBusqueda
@@ -375,12 +375,13 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.checkboxPuesto);
-            this.groupBox2.Controls.Add(this.checkboxCelular);
-            this.groupBox2.Controls.Add(this.checkboxTelefono);
-            this.groupBox2.Controls.Add(this.checkboxApellido);
-            this.groupBox2.Controls.Add(this.checkboxNombre);
-            this.groupBox2.Controls.Add(this.checkboxIdentidad);
+            this.groupBox2.Controls.Add(this.labelContra);
+            this.groupBox2.Controls.Add(this.labelPuestoModificar);
+            this.groupBox2.Controls.Add(this.labelCelularModificar);
+            this.groupBox2.Controls.Add(this.labelTelefonoModificar);
+            this.groupBox2.Controls.Add(this.labelApellido);
+            this.groupBox2.Controls.Add(this.labelNombreModificar);
+            this.groupBox2.Controls.Add(this.labelIdentidadModificar);
             this.groupBox2.Controls.Add(this.textboxContraseña);
             this.groupBox2.Controls.Add(this.comboboxPuestoModificar);
             this.groupBox2.Controls.Add(this.btnRegresarModificar);
@@ -391,7 +392,6 @@
             this.groupBox2.Controls.Add(this.textboxApellidoModificar);
             this.groupBox2.Controls.Add(this.textboxNombreModificar);
             this.groupBox2.Controls.Add(this.textboxIdentidadModificar);
-            this.groupBox2.Controls.Add(this.checkboxContraseña);
             this.groupBox2.Location = new System.Drawing.Point(7, 55);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(344, 493);
@@ -399,65 +399,68 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del Usuario:";
             // 
-            // checkboxPuesto
+            // labelContra
             // 
-            this.checkboxPuesto.AutoSize = true;
-            this.checkboxPuesto.Location = new System.Drawing.Point(8, 315);
-            this.checkboxPuesto.Name = "checkboxPuesto";
-            this.checkboxPuesto.Size = new System.Drawing.Size(82, 24);
-            this.checkboxPuesto.TabIndex = 58;
-            this.checkboxPuesto.Text = "Puesto:";
-            this.checkboxPuesto.UseVisualStyleBackColor = true;
+            this.labelContra.AutoSize = true;
+            this.labelContra.Location = new System.Drawing.Point(14, 376);
+            this.labelContra.Name = "labelContra";
+            this.labelContra.Size = new System.Drawing.Size(96, 20);
+            this.labelContra.TabIndex = 59;
+            this.labelContra.Text = "Contraseña:";
             // 
-            // checkboxCelular
+            // labelPuestoModificar
             // 
-            this.checkboxCelular.AutoSize = true;
-            this.checkboxCelular.Location = new System.Drawing.Point(8, 262);
-            this.checkboxCelular.Name = "checkboxCelular";
-            this.checkboxCelular.Size = new System.Drawing.Size(81, 24);
-            this.checkboxCelular.TabIndex = 57;
-            this.checkboxCelular.Text = "Celular:";
-            this.checkboxCelular.UseVisualStyleBackColor = true;
+            this.labelPuestoModificar.AutoSize = true;
+            this.labelPuestoModificar.Location = new System.Drawing.Point(14, 321);
+            this.labelPuestoModificar.Name = "labelPuestoModificar";
+            this.labelPuestoModificar.Size = new System.Drawing.Size(63, 20);
+            this.labelPuestoModificar.TabIndex = 58;
+            this.labelPuestoModificar.Text = "Puesto:";
             // 
-            // checkboxTelefono
+            // labelCelularModificar
             // 
-            this.checkboxTelefono.AutoSize = true;
-            this.checkboxTelefono.Location = new System.Drawing.Point(8, 207);
-            this.checkboxTelefono.Name = "checkboxTelefono";
-            this.checkboxTelefono.Size = new System.Drawing.Size(94, 24);
-            this.checkboxTelefono.TabIndex = 56;
-            this.checkboxTelefono.Text = "Telefono:";
-            this.checkboxTelefono.UseVisualStyleBackColor = true;
+            this.labelCelularModificar.AutoSize = true;
+            this.labelCelularModificar.Location = new System.Drawing.Point(14, 266);
+            this.labelCelularModificar.Name = "labelCelularModificar";
+            this.labelCelularModificar.Size = new System.Drawing.Size(62, 20);
+            this.labelCelularModificar.TabIndex = 57;
+            this.labelCelularModificar.Text = "Celular:";
             // 
-            // checkboxApellido
+            // labelTelefonoModificar
             // 
-            this.checkboxApellido.AutoSize = true;
-            this.checkboxApellido.Location = new System.Drawing.Point(6, 152);
-            this.checkboxApellido.Name = "checkboxApellido";
-            this.checkboxApellido.Size = new System.Drawing.Size(88, 24);
-            this.checkboxApellido.TabIndex = 55;
-            this.checkboxApellido.Text = "Apellido:";
-            this.checkboxApellido.UseVisualStyleBackColor = true;
+            this.labelTelefonoModificar.AutoSize = true;
+            this.labelTelefonoModificar.Location = new System.Drawing.Point(14, 211);
+            this.labelTelefonoModificar.Name = "labelTelefonoModificar";
+            this.labelTelefonoModificar.Size = new System.Drawing.Size(75, 20);
+            this.labelTelefonoModificar.TabIndex = 56;
+            this.labelTelefonoModificar.Text = "Telefono:";
             // 
-            // checkboxNombre
+            // labelApellido
             // 
-            this.checkboxNombre.AutoSize = true;
-            this.checkboxNombre.Location = new System.Drawing.Point(6, 97);
-            this.checkboxNombre.Name = "checkboxNombre";
-            this.checkboxNombre.Size = new System.Drawing.Size(88, 24);
-            this.checkboxNombre.TabIndex = 54;
-            this.checkboxNombre.Text = "Nombre:";
-            this.checkboxNombre.UseVisualStyleBackColor = true;
+            this.labelApellido.AutoSize = true;
+            this.labelApellido.Location = new System.Drawing.Point(14, 156);
+            this.labelApellido.Name = "labelApellido";
+            this.labelApellido.Size = new System.Drawing.Size(69, 20);
+            this.labelApellido.TabIndex = 55;
+            this.labelApellido.Text = "Apellido:";
             // 
-            // checkboxIdentidad
+            // labelNombreModificar
             // 
-            this.checkboxIdentidad.AutoSize = true;
-            this.checkboxIdentidad.Location = new System.Drawing.Point(6, 42);
-            this.checkboxIdentidad.Name = "checkboxIdentidad";
-            this.checkboxIdentidad.Size = new System.Drawing.Size(99, 24);
-            this.checkboxIdentidad.TabIndex = 53;
-            this.checkboxIdentidad.Text = "Identidad:";
-            this.checkboxIdentidad.UseVisualStyleBackColor = true;
+            this.labelNombreModificar.AutoSize = true;
+            this.labelNombreModificar.Location = new System.Drawing.Point(14, 101);
+            this.labelNombreModificar.Name = "labelNombreModificar";
+            this.labelNombreModificar.Size = new System.Drawing.Size(69, 20);
+            this.labelNombreModificar.TabIndex = 54;
+            this.labelNombreModificar.Text = "Nombre:";
+            // 
+            // labelIdentidadModificar
+            // 
+            this.labelIdentidadModificar.AutoSize = true;
+            this.labelIdentidadModificar.Location = new System.Drawing.Point(14, 46);
+            this.labelIdentidadModificar.Name = "labelIdentidadModificar";
+            this.labelIdentidadModificar.Size = new System.Drawing.Size(80, 20);
+            this.labelIdentidadModificar.TabIndex = 53;
+            this.labelIdentidadModificar.Text = "Identidad:";
             // 
             // textboxContraseña
             // 
@@ -516,7 +519,9 @@
             this.textboxCelularModificar.Name = "textboxCelularModificar";
             this.textboxCelularModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxCelularModificar.TabIndex = 46;
+            this.textboxCelularModificar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textboxCelularModificar_MouseClick);
             this.textboxCelularModificar.TextChanged += new System.EventHandler(this.textboxCelularModificar_TextChanged);
+            this.textboxCelularModificar.Enter += new System.EventHandler(this.textboxCelularModificar_Enter);
             this.textboxCelularModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxCelularModificar_KeyPress);
             // 
             // textboxTelefonoModificar
@@ -525,7 +530,9 @@
             this.textboxTelefonoModificar.Name = "textboxTelefonoModificar";
             this.textboxTelefonoModificar.Size = new System.Drawing.Size(195, 26);
             this.textboxTelefonoModificar.TabIndex = 45;
+            this.textboxTelefonoModificar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textboxTelefonoModificar_MouseClick);
             this.textboxTelefonoModificar.TextChanged += new System.EventHandler(this.textboxTelefonoModificar_TextChanged);
+            this.textboxTelefonoModificar.Enter += new System.EventHandler(this.textboxTelefonoModificar_Enter);
             this.textboxTelefonoModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxTelefonoModificar_KeyPress);
             // 
             // textboxApellidoModificar
@@ -557,16 +564,6 @@
             this.textboxIdentidadModificar.TextChanged += new System.EventHandler(this.textboxIdentidadModificar_TextChanged);
             this.textboxIdentidadModificar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxIdentidadModificar_KeyPress);
             this.textboxIdentidadModificar.Validating += new System.ComponentModel.CancelEventHandler(this.textboxIdentidadModificar_Validating);
-            // 
-            // checkboxContraseña
-            // 
-            this.checkboxContraseña.AutoSize = true;
-            this.checkboxContraseña.Location = new System.Drawing.Point(8, 368);
-            this.checkboxContraseña.Name = "checkboxContraseña";
-            this.checkboxContraseña.Size = new System.Drawing.Size(115, 24);
-            this.checkboxContraseña.TabIndex = 59;
-            this.checkboxContraseña.Text = "Contraseña:";
-            this.checkboxContraseña.UseVisualStyleBackColor = true;
             // 
             // tabPageEstado
             // 
@@ -606,6 +603,7 @@
             this.comboBoxEstado.Name = "comboBoxEstado";
             this.comboBoxEstado.Size = new System.Drawing.Size(169, 28);
             this.comboBoxEstado.TabIndex = 22;
+            this.comboBoxEstado.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEstado_Validating);
             // 
             // labelEstado
             // 
@@ -623,6 +621,8 @@
             this.textboxUsuarioEstado.Size = new System.Drawing.Size(169, 26);
             this.textboxUsuarioEstado.TabIndex = 20;
             this.textboxUsuarioEstado.TextChanged += new System.EventHandler(this.textboxUsuarioEliminar_TextChanged);
+            this.textboxUsuarioEstado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxUsuarioEstado_KeyPress);
+            this.textboxUsuarioEstado.Validating += new System.ComponentModel.CancelEventHandler(this.textboxUsuarioEstado_Validating);
             // 
             // label16
             // 
@@ -748,12 +748,12 @@
         private System.Windows.Forms.ComboBox comboBoxEstado;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.TextBox textboxContraseña;
-        private System.Windows.Forms.CheckBox checkboxPuesto;
-        private System.Windows.Forms.CheckBox checkboxCelular;
-        private System.Windows.Forms.CheckBox checkboxTelefono;
-        private System.Windows.Forms.CheckBox checkboxApellido;
-        private System.Windows.Forms.CheckBox checkboxNombre;
-        private System.Windows.Forms.CheckBox checkboxIdentidad;
-        private System.Windows.Forms.CheckBox checkboxContraseña;
+        private System.Windows.Forms.Label labelContra;
+        private System.Windows.Forms.Label labelPuestoModificar;
+        private System.Windows.Forms.Label labelCelularModificar;
+        private System.Windows.Forms.Label labelTelefonoModificar;
+        private System.Windows.Forms.Label labelApellido;
+        private System.Windows.Forms.Label labelNombreModificar;
+        private System.Windows.Forms.Label labelIdentidadModificar;
     }
 }

@@ -34,8 +34,7 @@ namespace Transporte_Cristina
         {
             txtRespuesta2.MaxLength = 25;
         }
-
-        private void btnContinuar_Click(object sender, EventArgs e)
+        private void preguntas()
         {
             if (cmbPregunta1.Text == "" || cmbPregunta2.Text == "" || cmbPregunta1.Text == cmbPregunta2.Text || txtRespuesta1.Text == txtRespuesta2.Text)
             {
@@ -49,6 +48,10 @@ namespace Transporte_Cristina
                 this.Hide();
                 nueva.Show();
             }
+        }
+        private void btnContinuar_Click(object sender, EventArgs e)
+        {
+            preguntas();
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -158,7 +161,22 @@ namespace Transporte_Cristina
 
         }
 
+        private void txtRespuesta1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                preguntas();
+            }
+            Validar.TextoConNumeros(e);
+        }
 
-
+        private void txtRespuesta2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                preguntas();
+            }
+            Validar.TextoConNumeros(e);
+        }
     }
 }

@@ -125,3 +125,23 @@ C:\Users\Gabriel\Documents\Visual Studio 2012\Projects\Cristina\Cristina\Transpo
 C:\Users\Gabriel\Documents\Visual Studio 2012\Projects\Cristina\Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.exe
 C:\Users\Gabriel\Documents\Visual Studio 2012\Projects\Cristina\Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.pdb
 C:\Users\fjfef\Documents\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.ArqueoCaja.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.exe.config
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.exe
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\bin\Debug\Transporte Cristina.pdb
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.csprojAssemblyReference.cache
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.AdministracionEmpleados.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.Agregar_Buses.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.ArqueoCaja.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.InicioSesion.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.Listado_Buses.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.ListadoEncomienda.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.MenuPrincipal.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.NuevaContraseña.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.PreguntasdeSeguridad.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.Properties.Resources.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.RecuperacionContraseña.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte_Cristina.RegistroEncomienda.resources
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.csproj.GenerateResource.cache
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.csproj.CoreCompileInputs.cache
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.exe
+C:\Users\fjfef\OneDrive\Documentos\Visual Studio 2017\Projects\Transporte Cristina\Cristina\Transporte Cristina\Transporte Cristina\Transporte Cristina\obj\Debug\Transporte Cristina.pdb

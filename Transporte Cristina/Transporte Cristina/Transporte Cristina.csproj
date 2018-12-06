@@ -66,12 +66,6 @@
     </Compile>
     <Compile Include="Conexion.cs" />
     <Compile Include="Encriptacion.cs" />
-    <Compile Include="IngresarCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IngresarCliente.Designer.cs">
-      <DependentUpon>IngresarCliente.cs</DependentUpon>
-    </Compile>
     <Compile Include="InicioSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,9 +125,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ArqueoCaja.resx">
       <DependentUpon>ArqueoCaja.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IngresarCliente.resx">
-      <DependentUpon>IngresarCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioSesion.resx">
       <DependentUpon>InicioSesion.cs</DependentUpon>

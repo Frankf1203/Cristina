@@ -12,12 +12,11 @@ namespace Transporte_Cristina
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void guardarcontraseña()
         {
             string Usuario = User;
             string Contraseña = Encriptacion.Encrypt(txtContraseña.Text);
-            if(txtContraseña.Text =="" || txtConfirmarContraseña.Text == "")
+            if (txtContraseña.Text == "" || txtConfirmarContraseña.Text == "")
             {
                 MessageBox.Show("Ingrese su contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -34,7 +33,10 @@ namespace Transporte_Cristina
             {
                 MessageBox.Show("Las contraseña no concuerdan. Intente de nuevo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            guardarcontraseña();   
         }
 
         private void NuevaContraseña_Load(object sender, EventArgs e)
@@ -88,11 +90,19 @@ namespace Transporte_Cristina
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                guardarcontraseña();
+            }
             Validar.TextoConNumeros(e);
         }
 
         private void txtConfirmarContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                guardarcontraseña();
+            }
             Validar.TextoConNumeros(e);
         }
     }

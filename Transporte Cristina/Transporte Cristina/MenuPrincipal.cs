@@ -23,12 +23,13 @@ namespace Transporte_Cristina
             DialogResult dialogResult = MessageBox.Show("¿Desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                Application.Exit();
+                InicioSesion inicio = new InicioSesion();
+                this.Hide();
+                inicio.Show();
             }
         }
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            btnControlRutas.Enabled = false;
             string Codigo_Puesto="";
             string Usuario = lblUsuario.Text;
             SqlCommand sql = new SqlCommand("select Codigo_Puesto from Empleados where Usuario ='" + Usuario + "'", Conexion.Obtenerconexion());
@@ -43,23 +44,24 @@ namespace Transporte_Cristina
                 btnAdminUsuarios.Visible = false;
                 btnAgregarBus.Visible = false;
                 btnArqueoCaja.Visible = false;
-                btnControlRutas.Visible = false;
+                pictureBox3.Visible = false;
+                pictureBox4.Visible = false;
+                pictureBox5.Visible = false;
             }
-            
-            
+                     
         }
 
         private void btnEncomienda_Click(object sender, EventArgs e)
         {
             RegistroEncomienda encomienda = new RegistroEncomienda();
-            this.Close();
+            this.Hide();
             encomienda.Show();
         }
 
         private void btnAdminUsuarios_Click(object sender, EventArgs e)
         {
             AdministracionEmpleados usuarios = new AdministracionEmpleados();
-            this.Close();
+            this.Hide();
             usuarios.Show();
         }
 
